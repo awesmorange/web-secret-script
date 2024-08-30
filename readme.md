@@ -7,7 +7,7 @@
 - <font color=#1099ff size=3> [···] vue2.X 微应用</font>
 - <font color=#1099ff size=3> [···] vue3 微应用</font>
 - <font color=#1099ff size=3> [···] react 微应用</font>
-- <font color=#1099ff size=3> [···] 低代码平台</font>
+- <font color=#1099ff size=1> [&cross;] 低代码平台</font>
 - <font color=#ffffff size=1> [&cross;] nodejs 后台</font>
 
 其次就是记录一下学习笔记，目前打算整理一下笔记:

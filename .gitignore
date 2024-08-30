@@ -12,9 +12,12 @@
 /**/dist-ssr
 /**/*.local
 /**/package-lock.json
+/**/pnpm-lock.yaml
 
 # Editor directories and files
+.chat/*
 .vscode/*
+/**/.vscode/
 !.vscode/extensions.json
 .idea
 .DS_Store
