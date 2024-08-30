@@ -3,15 +3,16 @@
 
 目前打算使用前端微服务(qiankun)的方式，将文档和算法整理嵌入到主应用里，组件分别对应vue2.X，vue3，react框架搭建三个微服务（不会一一对应实现），再整合一个低代码案例平台微服务。以及搭建一个nodejs实现的后台管理系统。
 
-- <font color=#ffffff size=1> [&cross;] qiankun 微服务 主应用</font>
-- <font color=#ffffff size=1> [&cross;] vue2.X 微应用</font>
-- <font color=#ffffff size=1> [&cross;] vue3 微应用</font>
-- <font color=#ffffff size=1> [&cross;] react 微应用</font>
-- <font color=#ffffff size=1> [&cross;] 低代码平台</font>
+- <font color=#1099ff size=3> [···] qiankun 微服务 主应用</font>
+- <font color=#1099ff size=3> [···] vue2.X 微应用</font>
+- <font color=#1099ff size=3> [···] vue3 微应用</font>
+- <font color=#1099ff size=3> [···] react 微应用</font>
+- <font color=#1099ff size=3> [···] 低代码平台</font>
 - <font color=#ffffff size=1> [&cross;] nodejs 后台</font>
 
 其次就是记录一下学习笔记，目前打算整理一下笔记:
-- <font color=#1099ff size=3> [···] ci/cd</font>
+- <font color=#d099ff size=2> [&cross;] ci/cd</font>
+认识workflow，选择workflow模板，学习workflow的触发事件和控制运行条件
 - <font color=#ffffff size=1> [&cross;] babel</font>
 - <font color=#ffffff size=1> [&cross;] webxr</font>
 - <font color=#ffffff size=1> [&cross;] 音视频</font>
@@ -32,6 +33,8 @@
 <font color=#ffffff size=1> [&cross;] 未开始</font>
 
 <font color=#1099ff size=3> [···] 进行中</font>
+
+<font color=#d099ff size=2> [&cross;] 停止更新</font>
 
 <font color=#008000 size=2> [&check;] 已完成</font>
 
