@@ -41,6 +41,7 @@ renderWithQiankun({
     },
 });
 
+// 独立运行时，直接挂载应用
 if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
     renderVue2({});
 }
