@@ -1,0 +1,23 @@
+{
+    "name": "qiankun",
+    "version": "0.0.1",
+    "description": "以qiankun为微服务架构的项目，展示学习内容和组件",
+    "scripts": {
+        "install:npm": "cd main && npm install && cd ../sub-vue2 && npm install && cd ../sub-vue3 && npm install && cd ../sub-react && npm install",
+        "install:pnpm": "cd main && pnpm install && cd ../sub-vue2 && pnpm install && cd ../sub-vue3 && pnpm install && cd ../sub-react && pnpm install",
+        "dev:all": "npm-run-all --parallel dev:main dev:vue2 dev:vue3 dev:react",
+        "dev:main": "cd main && npm run dev",
+        "dev:vue2": "cd sub-vue2 && npm run dev",
+        "dev:vue3": "cd sub-vue3 && npm run dev",
+        "dev:react": "cd sub-react && npm run dev"
+    },
+    "keywords": [
+        "qiankun",
+        "vite"
+    ],
+    "devDependencies": {
+      "npm-run-all": "^4.1.5"
+    },
+    "homepage": "https://github.com/awesmorange/web-secret-script.git",
+    "author": "orange"
+}

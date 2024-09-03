@@ -47,3 +47,10 @@
 
 <font color=#008000 size=2> [&check;] 已完成</font>
 
+## | 使用方法
+```
+git clone https://github.com/awesmorange/web-secret-script.git
+cd web-secret-script
+npm run install:qiankun-npm // npm run install:qiankun-pnpm
+npm run dev:qiankun
+```
