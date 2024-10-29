@@ -1,7 +1,11 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
+
+Vue.use(ElementUI);
 
 let instance = null;
 
