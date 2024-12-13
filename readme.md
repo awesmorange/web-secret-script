@@ -13,6 +13,7 @@
         [import-html-entry]: error occurs while executing normal script <script type="module">
 
         SyntaxError: Cannot use import statement outside a module
+- <font color=#ffffff size=1> [O] vue test utils V2 (vue3)</font>
 - <font color=#ffffff size=1> [-] 低代码平台</font>
 - <font color=#ffffff size=1> [-] nodejs 后台</font>
 

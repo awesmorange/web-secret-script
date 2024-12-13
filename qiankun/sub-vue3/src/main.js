@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
 import App from './App.vue'
+import router from './router'
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 
@@ -12,6 +15,8 @@ let instance = null;
 function renderVue3() {
     // 挂载应用
     instance = createApp(App)
+    instance.use(createPinia())
+    instance.use(router)
     instance.mount(document.getElementById("vue3-app"))
 }
 

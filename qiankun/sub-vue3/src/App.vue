@@ -1,9 +1,10 @@
 <script setup>
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <div>
-    sub-vue3
+    <RouterView />
   </div>
 </template>
 

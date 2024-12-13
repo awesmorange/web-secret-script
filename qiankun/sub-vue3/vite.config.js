@@ -1,5 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import qiankun from 'vite-plugin-qiankun'
 import { resolve } from "path";
 
@@ -11,10 +13,15 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, root)
   let config = {
     // base: env.VITE_BASE_API,
-    plugins: [vue(),
-    qiankun('sub-vue3',  // 微应用名字，与主应用注册的微应用名字保持一致
-      { useDevMode: true }
-    )],
+    plugins: [
+      vue(),
+      vueJsx(),
+      vueDevTools(),
+      qiankun(
+        'sub-vue3',  // 微应用名字，与主应用注册的微应用名字保持一致
+        { useDevMode: true }
+      )
+    ],
     resolve: {
       alias: [
         {
