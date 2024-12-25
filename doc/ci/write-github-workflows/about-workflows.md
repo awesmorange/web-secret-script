@@ -1,7 +1,7 @@
 # 快速了解 workflows
 ## 配置私密变量
 在github里面配置变量，通过`secrets`对象取
-```
+``` yaml
 jobs:
   example-job:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
 ## 配置jobs执行顺序
 jobs默认同时执行，可以通过`needs`来调整先后依赖顺序
 也可以用`if`配置条件语句
-```
+``` yaml
 # 下面是setup, build, test三个jobs
 # 执行顺序为setup -> build -> test
 jobs:
@@ -36,7 +36,7 @@ jobs:
 ```
 ## .yaml局部变量
 在`strategy`关键字模块内声明变量
-```
+``` yaml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -51,7 +51,7 @@ jobs:
 ## 依赖缓存
 如果jobs需要重复使用依赖项，考虑讲这些利来文件缓存起来
 
-```
+``` yaml
 # 举例如何缓存~/.npm目录
 jobs:
   example-job:
@@ -69,7 +69,7 @@ jobs:
 ## 使用数据库和服务资源
 有使用数据库或缓存服务，可以使用`services`关键字去创建一个
 临时容器来托管该服务。生成的容器可以用于该 job 的所有步骤，并在 job 完成后删除。
-```
+``` yaml
 # 示例如何使用 services 创建 postgres 容器
 # 然后用 node 连接到 service
 jobs:
@@ -92,7 +92,7 @@ jobs:
 ```
 ## 使用标签来引导workflows
 当需要特定环境的runner执行job，可以使用labels去控制jobs执行环境。除了默认的`self-hosted`的标签（label）,还支持在 YAML workflow 指定标签，来设置你想要job执行的方式。
-```
+``` yaml
 # 示例 workflow 使用 labels指定需要执行的 runner 环境
 jobs:
   example-job:

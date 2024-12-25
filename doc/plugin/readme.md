@@ -3,11 +3,11 @@
 [patch-package](https://www.npmjs.com/package/patch-package)
 ### 使用步骤
 - 安装patch-package
-```
+``` shell
 npm i patch-package postinstall-postinstall --save-dev
 ```
 - package.json文件scripts内添加命令
-```
+``` json
 "scripts": {
     "postinstall": "patch-package",
     "adapt-packages": "npx patch-package lamejs"
@@ -16,7 +16,7 @@ npm i patch-package postinstall-postinstall --save-dev
 ```
 - 到node_modules找到对应的包，进行修改
 - 插入代码后，使用patch-package打个补丁
-```
+``` shell
 npm run adapt-packages
 ## 补丁完成后删除依赖重新安装依赖
 rm -rf node_modules
