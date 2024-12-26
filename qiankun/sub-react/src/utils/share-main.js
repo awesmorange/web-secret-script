@@ -6,10 +6,10 @@ export const getShareMainComponent = () => {
 }
 
 // 设置共享的组件
-export const setShareMainComponent = (currShareMainComponent) => {
+export const setShareMainComponent = (currShareMainApp) => {
     for (const key in currShareMainApp) {
-        if (Object.prototype.hasOwnProperty.call(currShareMainComponent, key)) {
-            shareMainComponent[key] = currShareMainComponent[key];
+        if (Object.prototype.hasOwnProperty.call(currShareMainApp, key)) {
+            shareMainComponent[key] = currShareMainApp[key];
         }
     }
 }

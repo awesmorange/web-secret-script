@@ -30,7 +30,7 @@ const microApps = [
     container: '#subapp-viewport', // 子应用挂载的div
     props: {
       routerBase: '/sub-react',
-      ...shareReactComponent
+      shareReactComponent
     }
   }
 ]
