@@ -4,12 +4,13 @@
 1. 无法通过引入文件确定js文件的依赖关系
 2. 彼此的js文件里面的代码产生的冲突也无法查看。
 
-```
+``` html
 // index.html
 <script src='js/a.js'></script>
 <script src='js/b.js'></script>
 <script src='js/c.js'></script>
-
+```
+``` javascript
 // a.js
 let num = 1;
 console.log(num);
@@ -59,7 +60,7 @@ commonJS（Node.js） -> AMD（Require.js）-> CMD（Sea.js）
 RequireJS 是一个 JavaScript 文件和模块载入工具。他针对浏览器使用场景进行优化，并且也可以应用到其他 JavaScript 环境中。如Node.js
 
 module: 模块的意义
-```
+```html
 <script src="https://cdn.bootcdn.net/ajax/libs/require.js/2.3.6/require.min.js" defer async=true data-main="script/main.js"></script>
 ```
 defer: 异步加载，不会阻塞后面的代码，ie兼容写法
@@ -77,7 +78,7 @@ define 定义模块，接受第二个参数
 第二个参数是一个回调函数
 
 一个文件就是一个模块，define只能出现一次
-```
+``` javascript
 // effect.js
 define([
     // 依赖
@@ -93,7 +94,7 @@ define([
 })
 ```
 或者下面的写法
-```
+``` javascript
 // effect.js
 define([
     // 依赖
@@ -119,7 +120,7 @@ require 调用模块，接受第二个参数
 第二个参数是一个回调函数
 
 require 一个文件可以有多个，调用模块可以多个
-```
+``` javascript
 // main.js
 require(['effect'], (m1)=>{ // m1: 表示effect模块的返回值
 console.log(m1.num) // 0
@@ -129,7 +130,7 @@ console.log(m1.tab()) // 100
 ```
 
 ### 优化写法
-```
+``` javascript
 // effect.js
 define([
     // 依赖

@@ -4,6 +4,8 @@ import App from "./App.jsx";
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 
+import { setShareMainComponent } from "@/utils/share-main.js";
+
 let instance = null;
 
 /**
@@ -21,16 +23,17 @@ function renderReact() {
 }
 renderWithQiankun({
     mount(props) {
-        console.log('react-app', props);
-        // const { onGlobalStateChange, setGlobalState, components, enums, name } = props;
-        // TODO:
+        const { onGlobalStateChange, setGlobalState, shareReactComponent, enums, name } = props;
+        console.log('>>> sub-react mount', shareReactComponent);
+
+        setShareMainComponent(shareReactComponent);
         renderReact(props);
     },
     bootstrap() {
-        console.log('bootstrap');
+        console.log('>>> sub-react bootstrap');
     },
     unmount(props) {
-        console.log("AZZ unmounted");
+        console.log(">>> sub-react unmounted");
         instance.unmount();
         instance = null;
     },

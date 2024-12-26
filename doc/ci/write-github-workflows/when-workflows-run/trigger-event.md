@@ -8,7 +8,7 @@
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   branch_protection_rule:
     types: [created, deleted]
@@ -24,7 +24,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   check_run:
     types: [rerequested, completed]
@@ -37,7 +37,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   check_suite:
     types: [completed]
@@ -50,7 +50,7 @@ on:
 &check; `GITHUB_SHA`: 创建分支或标签上的最后一次提交
 
 &check; `GITHUB_REF`: 已创建分支或标签
-```
+``` yaml
 on:
   create
 ```
@@ -62,7 +62,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   delete
 ```
@@ -74,7 +74,7 @@ on:
 &check; `GITHUB_SHA`: 承诺部署
 
 &check; `GITHUB_REF`: 要部署的分支或标签（如果使用提交 SHA 创建则为空）
-```
+``` yaml
 on:
   deployment
 ```
@@ -86,7 +86,7 @@ on:
 &check; `GITHUB_SHA`: 承诺部署
 
 &check; `GITHUB_REF`: 要部署的分支或标签（如果提交则为空）
-```
+``` yaml
 on:
   deployment_status
 ```
@@ -110,7 +110,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   discussion:
     types: [created, edited, answered]
@@ -125,7 +125,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   discussion_comment:
     types: [created, deleted]
@@ -138,7 +138,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   fork
 ```
@@ -150,7 +150,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   gollum
 ```
@@ -164,14 +164,14 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   issue_comment:
     types: [created, deleted]
 ```
 
 | 事件`issue_comment`针对问题和拉取请求的评论发生。您可以`github.event.issue.pull_request`在条件中使用该属性，根据触发对象是问题还是拉取请求来采取不同的操作。
-```
+``` yaml
 on: issue_comment
 
 jobs:
@@ -219,7 +219,7 @@ jobs:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   issues:
     types: [opened, edited, milestoned]
@@ -234,7 +234,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   label:
     types: [created, deleted]
@@ -247,7 +247,7 @@ on:
 &check; `GITHUB_SHA`: 合并组的 SHA
 
 &check; `GITHUB_REF`: 合并组的引用
-```
+``` yaml
 on:
   pull_request:
     branches: [ "main" ]
@@ -266,7 +266,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   milestone:
     types: [opened, deleted]
@@ -279,7 +279,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 不适用
-```
+``` yaml
 on:
   page_build
 ```
@@ -295,7 +295,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   project:
     types: [created, deleted]
@@ -312,7 +312,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   project_card:
     types: [created, deleted]
@@ -328,7 +328,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   project_column:
     types: [created, deleted]
@@ -341,7 +341,7 @@ on:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 on:
   public
 ```
@@ -373,13 +373,13 @@ on:
 &check; `GITHUB_SHA`: GITHUB_REF分支上的最后一次合并提交
 
 &check; `GITHUB_REF`: PR 合并分支refs/pull/PULL_REQUEST_NUMBER/merge
-```
+``` yaml
 on:
   pull_request:
     types: [opened, reopened]
 ```
 | 可以使用事件上下文进一步控制工作流程中的作业何时运行。例如，此工作流程将在请求对拉取请求进行审核时运行，但作业`specific_review_requested`仅在请求审核时运行`octo-team`
-```
+``` yaml
 on:
   pull_request:
     types: [review_requested]
@@ -391,7 +391,7 @@ jobs:
       - run: echo 'A review from octo-team was requested'
 ```
 | pull_request根据拉取请求的头分支或基础分支运行工作流程
-```
+``` yaml
 on:
   pull_request:
     types:
@@ -404,7 +404,7 @@ jobs:
       - run: echo "The head of this PR starts with 'releases/'"
 ```
 | pull_request根据拉取请求中更改的文件运行工作流程
-```
+``` yaml
 on:
   pull_request:
     types:
@@ -416,7 +416,7 @@ on:
 ```
 
 | pull_request当拉取请求合并时运行你的工作流程
-```
+``` yaml
 on:
   pull_request:
     types:
@@ -456,14 +456,14 @@ jobs:
 &check; `GITHUB_SHA`: GITHUB_REF分支上的最后一次合并提交
 
 &check; `GITHUB_REF`: PR 合并分支refs/pull/PULL_REQUEST_NUMBER/merge
-```
+``` yaml
 on:
   pull_request_review:
     types: [edited, dismissed]
 ```
 ### 当拉取请求被批准时运行工作流程
 要在拉取请求获得批准后运行工作流，您可以使用事件`submitted`类型触发工作流`pull_request_review`，然后使用属性检查审核状态`github.event.review.state`。例如，此工作流将在提交拉取请求审核时运行，但`approved`仅当提交的审核是批准审核时，作业才会运行：
-```
+``` yaml
 on:
   pull_request_review:
     types: [submitted]
@@ -498,7 +498,7 @@ jobs:
 &check; `GITHUB_SHA`: GITHUB_REF分支上的最后一次合并提交
 
 &check; `GITHUB_REF`: PR 合并分支refs/pull/PULL_REQUEST_NUMBER/merge
-```
+``` yaml
 on:
   pull_request_review_comment:
     types: [created, deleted]
@@ -540,14 +540,14 @@ on:
 &check; `GITHUB_SHA`: PR 基础分支上的最后一次提交
 
 &check; `GITHUB_REF`: PR 基础分支
-```
+``` yaml
 on:
   pull_request_target:
     types: [assigned, opened, synchronize, reopened]
 ```
 | pull_request_target根据拉取请求的头分支或基础分支运行工作流程
 
-```
+``` yaml
 on:
   pull_request_target:
     types:
@@ -562,7 +562,7 @@ jobs:
 | pull_request_target根据拉取请求中更改的文件运行工作流程
 
 如果同时使用branches过滤器和paths过滤器，则工作流程仅在两个过滤器都满足时才会运行。例如，以下工作流程仅在名称以.js开头的分支上打开包含对 JavaScript ( ) 文件的更改的拉取请求时才会运行releases/
-```
+``` yaml
 on:
   pull_request_target:
     types:
@@ -575,7 +575,7 @@ on:
 | pull_request_target当拉取请求合并时运行你的工作流程
 
 当拉取请求合并时，拉取请求会自动关闭。若要在拉取请求合并时运行工作流，请使用事件类型以及检查事件值的`pull_request_target` `closed`条件。例如，以下工作流将在拉取请求关闭时运行。只有当拉取请求也合并时，`if_merged`才会运行。
-```
+``` yaml
 on:
   pull_request_target:
     types:
@@ -596,13 +596,13 @@ jobs:
 &check; `GITHUB_SHA`: 当您删除分支时，工作流运行中的 SHA（及其相关引用）将恢复为存储库的默认分支。
 
 &check; `GITHUB_REF`: 更新节点
-```
+``` yaml
 on:
   push
 ```
 | 仅当推送到特定分支时才运行工作流程
 
-```
+``` yaml
 on:
   push:
     branches:
@@ -611,14 +611,14 @@ on:
       - '**.js'
 ```
 | 仅在推送特定标签时运行工作流程
-```
+``` yaml
 on:
   push:
     tags:
       - v1.**
 ```
 | 仅当推送影响特定文件时才运行工作流程
-```
+``` yaml
 on:
   push:
     branches:
@@ -635,7 +635,7 @@ on:
 &check; `GITHUB_SHA`: 已发布包的提交
 
 &check; `GITHUB_REF`: 已发布软件包的分支或标签
-```
+``` yaml
 on:
   registry_package:
     types: [published]
@@ -654,7 +654,7 @@ on:
 &check; `GITHUB_SHA`: 标记版本中的最后一次提交
 
 &check; `GITHUB_REF`: 发布的标签引用refs/tags/<tag_name>
-```
+``` yaml
 on:
   release:
     types: [published]
@@ -669,7 +669,7 @@ on:
 &check; `GITHUB_REF`: 默认分支
 
 | 值event_type限制为100个字符
-```
+``` yaml
 # 通过该参数发送的任何数据都client_payload将在工作流的上下文中可用github.event。例如，如果您在创建存储库调度事件时发送此请求正文：
 {
   "event_type": "test_result",
@@ -679,7 +679,7 @@ on:
   }
 }
 ```
-```
+``` yaml
 # 然后您可以按照这样的工作流访问有效载荷：
 on:
   repository_dispatch:
@@ -704,7 +704,7 @@ jobs:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 # 每天 UTC 时间 5:30 和 17:30 触发工作流：
 on:
   schedule:
@@ -712,7 +712,7 @@ on:
     - cron:  '30 5,17 * * *'
 ```
 单个工作流可以由多个`schedule`事件触发。您可以通过上下文访问触发工作流的计划事件`github.event.schedule`。
-```
+``` yaml
 # 此示例触发工作流在每周一至周四的 UTC 时间 5:30 运行，但跳过Not on Monday or Wednesday周一和周三的步骤。
 on:
   schedule:
@@ -738,7 +738,7 @@ jobs:
 &check; `GITHUB_REF`: 无
 
 如果您想根据新的提交状态在工作流程中运行作业，则可以使用上下文`github.event.state`。
-```
+``` yaml
 # 以下工作流程在提交状态发生变化时触发，但 if_error_or_failure 只有当新的提交状态为 error 或 时，作业才会运行 failure
 on:
   status
@@ -762,7 +762,7 @@ jobs:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 # 当有人为存储库加注星标时，您可以运行工作流，这是started监视事件的活动类型
 on:
   watch:
@@ -778,7 +778,7 @@ on:
 &check; `GITHUB_REF`: 与`caller workflow`相同
 
 `workflow_call`用于指示一个工作流可被另一个工作流调用。当使用事件触发工作流时`workflow_call`，被调用工作流中的事件负载与调用工作流中的事件负载相同。
-```
+``` yaml
 on: workflow_call
 ```
 
@@ -789,12 +789,12 @@ on: workflow_call
 &check; `GITHUB_SHA`: GITHUB_REF分支或标签上的最后一次提交
 
 &check; `GITHUB_REF`: 收到调度的分支或标签
-```
+``` yaml
 on: workflow_dispatch
 ```
 | 提供输入
 此示例定义了输入名为 `logLevel`, `tags`, and `environment`. 你可以在工作流中使用这些输入的值. 在这个workflow的上下文中使用了`inputs.logLevel`, `inputs.tags`, 和 `inputs.environment`。
-```
+``` yaml
 on:
   workflow_dispatch:
     inputs:
@@ -841,7 +841,7 @@ jobs:
 &check; `GITHUB_SHA`: 默认分支上的最后一次提交
 
 &check; `GITHUB_REF`: 默认分支
-```
+``` yaml
 # workflow配置为在单独的 Run Tests 工作流程完成后运行
 on:
   workflow_run:
@@ -850,7 +850,7 @@ on:
       - completed
 ```
 如果您`workflows`为`workflow_run`事件指定多个，则只需运行其中一个工作流。
-```
+``` yaml
 # 具有以下触发器的workflows将在“Staging”工作流或“Lab”工作流完成时运行。
 on:
   workflow_run:
@@ -860,7 +860,7 @@ on:
 ```
 
 | 根据另一个工作流程的结论来运行工作流程
-```
+``` yaml
 on:
   workflow_run:
     workflows: [Build]
@@ -880,7 +880,7 @@ jobs:
 ```
 
 | 限制工作流程基于分支运行
-```
+``` yaml
 on:
   workflow_run:
     workflows: [Build]
@@ -889,7 +889,7 @@ on:
 ```
 
 | 使用触发工作流中的数据
-```
+``` yaml
 # 以下工作流程将数据作为工件上传。（在此简化的示例中，数据是拉取请求编号。）
 name: Upload data
 
@@ -913,7 +913,7 @@ jobs:
           path: pr/
 ```
 当上述工作流程运行完成后，它将触发以下工作流程的运行。以下工作流程使用上下文`github.event.workflow_run`和 `GitHub REST API` 下载上述工作流程上传的工件，解压缩下载的工件，并对作为工件上传的编号的拉取请求进行评论。
-```
+``` yaml
 name: Use the data
 
 on:

@@ -1,3 +1,9 @@
+import MarkdownContainer from '@/components/markdownContainer'
+
+const shareReactComponent = {
+  MarkdownContainer
+}
+
 const microApps = [
   {
     name: 'sub-vue2',
@@ -23,7 +29,8 @@ const microApps = [
     activeRule: '/sub-react',
     container: '#subapp-viewport', // 子应用挂载的div
     props: {
-      routerBase: '/sub-react'
+      routerBase: '/sub-react',
+      shareReactComponent
     }
   }
 ]

@@ -2,7 +2,7 @@
 ## Android与IOS调用调用h5的全局方法，全局方法写法不同
 - IOS必须返回一个值，无所谓值是什么
 - Android不能返回值
-```
+``` javascript
 window.gloablFunc = () => {
         // TODO:
         // ...
@@ -12,7 +12,7 @@ window.gloablFunc = () => {
     }
 ```
 ## h5调用Android与IOS的方法，写法不同
-```
+``` javascript
 //调用APP扫描二维码
 if(window.AndroidBridge) { // 安卓平板
     window.AndroidBridge.startScan();

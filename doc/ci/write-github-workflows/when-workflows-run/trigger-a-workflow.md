@@ -15,7 +15,7 @@
 ### 多个事件触发
 `on: [push, fork]`
 ### 动态类型和过滤器实现多事件触发
-```
+``` yaml
 # 创建标签
 # 向存储库中的main分支进行推送
 # 向启用了GitHub Pages的分支进行推送
@@ -30,7 +30,7 @@ on:
 ```
 ## 动态类型事件
 `issue_comment`:`created`,`edited`,`deleted`
-```
+``` yaml
 # 只在created时触发，edited，delete不会触发
 on:
   label:
@@ -38,7 +38,7 @@ on:
       - created
 ```
 ## 使用过滤器
-```
+``` yaml
 # 只在main、和releases/开头的分支触发
 on:
   push:
@@ -48,7 +48,7 @@ on:
 ```
 ### 对指定分支的pull事件使用过滤器
 | 包含分支
-```
+``` yaml
 on:
   pull_request:
     branches:
@@ -57,7 +57,7 @@ on:
       - 'releases/**'
 ```
 | 排除分支
-```
+``` yaml
 on:
   pull_request:
     branches-ignore:
@@ -65,7 +65,7 @@ on:
       - 'releases/**-alpha'
 ```
 | 包含和排除简略写法
-```
+``` yaml
 on:
   pull_request:
     branches:
@@ -74,7 +74,7 @@ on:
 ```
 ### 对指定分支和tags的push事件使用过滤器
 | 包含
-```
+``` yaml
 on:
   push:
     branches:
@@ -87,7 +87,7 @@ on:
       - v1.*
 ```
 | 排除
-```
+``` yaml
 on:
   push:
     branches-ignore:
@@ -99,7 +99,7 @@ on:
       - v1.*
 ```
 | 包含和排除简略写法
-```
+``` yaml
 on:
   push:
     branches:
@@ -108,21 +108,21 @@ on:
 ```
 ### 对指定路径的 pull 和 push 事件使用过滤器
 | 包含路径
-```
+``` yaml
 on:
   push:
     paths:
       - '**.js'
 ```
 | 排除路径
-```
+``` yaml
 on:
   push:
     paths-ignore:
       - 'docs/**'
 ```
 | 包含和排除简略写法
-```
+``` yaml
 on:
   push:
     paths:
@@ -137,7 +137,7 @@ on:
 使用`workflow_run`事件时，可以指定触发工作流必须在哪些分支上运行才能触发工作流。
 
 | 包含
-```
+``` yaml
 on:
   workflow_run:
     workflows: ["Build"]
@@ -146,7 +146,7 @@ on:
       - 'releases/**'
 ```
 | 排除
-```
+``` yaml
 on:
   workflow_run:
     workflows: ["Build"]
@@ -155,7 +155,7 @@ on:
       - "canary"
 ```
 | 简写
-```
+``` yaml
 on:
   workflow_run:
     workflows: ["Build"]
@@ -173,7 +173,7 @@ on:
 ! `inputs`的顶层属性的最大数量为10。
 
 ! `inputs`的最大有效载荷为65535个字符。
-```
+``` yaml
 on:
   workflow_dispatch:
     inputs:
@@ -211,7 +211,7 @@ jobs:
 后面章节会讲到
 ## 使用事件信息
 ### 查看事件的所有属性
-```
+``` yaml
 jobs:
   print_context:
     runs-on: ubuntu-latest
@@ -222,7 +222,7 @@ jobs:
           echo $EVENT_CONTEXT
 ```
 ### 获取和使用事件属性
-```
+``` yaml
 on:
   pull_request:
     types:
@@ -252,7 +252,7 @@ jobs:
 | 使用事件携带的参数
 
 运行workflow时，向问题添加指定标签，则可以在`issues labeled`事件动态类型，并使用条件语句来检查是什么标签触发了workflow。当向workflow存储库中的问题添加任何标签时，将运行以下workflow，但`run_if_label_matches`作业仅在标签命名为`bug`时才会执行。
-```
+``` yaml
 on:
   issues:
     types:
@@ -268,7 +268,7 @@ jobs:
 | 使用事件类型
 
 例如，如果要根据触发workflow的事件运行不同的作业或步骤，可以使用条件来检查事件上下文中是否存在特定的事件类型。每当关闭问题或拉取请求时，将运行以下workflow。如果workflow运行是因为问题已关闭，则`github.event`上下文将包含issue的值，但不包含`pull_request`的值。因此，`if_issue`步骤将运行，但`if_pr`步骤不会运行。相反，如果workflow是因为拉取请求关闭而运行的，则`if_pr`步骤将运行，但`if_issue`步骤不会运行。
-```
+``` yaml
 on:
   issues:
     types:
@@ -293,7 +293,7 @@ jobs:
 ### 使用环境手动触发workflow作业
 每当有向main推送时，将运行以下workflow。构建作业将始终运行。`publish`作业只有在`build`作业成功完成（由于需要：[build]）并且在称为`production`通过的环境的所有规则（包括所需的审阅者）通过（由于环境：`production`）后才会运行。
 
-```
+``` yaml
 on:
   push:
     branches:
