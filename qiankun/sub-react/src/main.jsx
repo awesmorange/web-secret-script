@@ -4,6 +4,8 @@ import App from "./App.jsx";
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 
+import { setShareMainComponent } from "@/utils/share-main.js";
+
 let instance = null;
 
 /**
@@ -24,6 +26,7 @@ renderWithQiankun({
         console.log('react-app', props);
         // const { onGlobalStateChange, setGlobalState, components, enums, name } = props;
         // TODO:
+        setShareMainComponent(props.shareMainApp);
         renderReact(props);
     },
     bootstrap() {
