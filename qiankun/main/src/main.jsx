@@ -46,7 +46,7 @@ setGlobalState({
 /**
  * Step3 设置默认进入的子应用
  */
-setDefaultMountApp('/sub-vue2');
+// setDefaultMountApp('/sub-vue2');
 
 /**
  * Step4 启动应用
