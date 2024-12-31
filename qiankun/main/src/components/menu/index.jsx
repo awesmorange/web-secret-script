@@ -1,34 +1,43 @@
 import { BrowserRouter, Link, NavLink, Routes, Route, useNavigate, useSearchParams, useParams, Outlet, } from "react-router-dom";
 import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+
+import {
+    menu as menuClass,
+    subMenu as subMenuClass,
+    menuItem as menuItemClass,
+} from './style.module.scss'
+
 const Menu = ({ menus }) => {
     const renderMenu = (menu) => {
-        return menu.map((menuItem) => {
-            if (menuItem.children) {
-                return renderSubMenu(menuItem);
-            } else {
-                return renderMenuItem(menuItem);
-            }
-        });
+        return (<div className={menuClass}>
+            {menu.map((menuItem) => {
+                if (menuItem.children) {
+                    return renderSubMenu(menuItem);
+                } else {
+                    return renderMenuItem(menuItem);
+                }
+            })}
+        </div>);
     };
 
     const renderMenuItem = (menuItem) => {
         return (
-            <li key={menuItem.path}>
+            <div key={menuItem.path} className={menuItemClass}>
                 <NavLink to={menuItem.path}>{menuItem.name}</NavLink>
-            </li>
+            </div>
         );
     };
 
     const renderSubMenu = (subMenu) => {
         return (
-            <li>
+            <div className={subMenuClass}>
                 <span>{subMenu.name}</span>
-                <ul>
+                <div>
                     {subMenu?.children?.map((menuItem) => {
                         return renderMenuItem(menuItem);
                     })}
-                </ul>
-            </li>
+                </div>
+            </div>
         );
     };
     return renderMenu(menus)

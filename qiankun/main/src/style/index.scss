@@ -1,0 +1,15 @@
+@import './color.scss';
+@import './border.scss';
+
+:root {
+    --small-height: 24px;
+    --medium-height: 32px;
+    --large-height: 40px;
+    --row-height: 60px;
+}
+
+body,
+html {
+    margin: 0;
+    background-color: var(--yellow3-color);
+}

@@ -6,7 +6,7 @@ const menus = [
     },
     {
         name: '路由',
-        path: '/router',
+        path: '/sub-react/router',
         icon: 'el-icon-s-home',
     },
     {
