@@ -7,40 +7,56 @@ import {
     menuItem as menuItemClass,
 } from './style.module.scss'
 
-const Menu = ({ menus }) => {
-    const renderMenu = (menu) => {
-        return (<div className={menuClass}>
-            {menu.map((menuItem) => {
-                if (menuItem.children) {
-                    return renderSubMenu(menuItem);
-                } else {
-                    return renderMenuItem(menuItem);
-                }
-            })}
-        </div>);
-    };
+const MenuItem = ({ menuItem, customClass }) => {
+    return (
+        <div className={[menuItemClass, customClass].join(' ')}>
+            <NavLink to={menuItem.path}>{menuItem.name}</NavLink>
+        </div>
+    );
+};
 
-    const renderMenuItem = (menuItem) => {
-        return (
-            <div key={menuItem.path} className={menuItemClass}>
-                <NavLink to={menuItem.path}>{menuItem.name}</NavLink>
-            </div>
-        );
-    };
+const SubMenu = ({ subMenu, customClass }) => {
+    const [fold, setFold] = useState(true);
 
-    const renderSubMenu = (subMenu) => {
-        return (
-            <div className={subMenuClass}>
-                <span>{subMenu.name}</span>
-                <div>
-                    {subMenu?.children?.map((menuItem) => {
-                        return renderMenuItem(menuItem);
-                    })}
+    const foldIcon = useMemo(() => {
+        if (subMenu?.children?.length) {
+            return fold ? '+' : '-'
+        }
+        return '';
+    }, [subMenu, fold]);
+
+    return (<>
+        {/* 当前层级 */}
+        {
+            subMenu?.children?.length && (
+                <div className={[menuItemClass, customClass].join(' ')} onClick={() => { setFold(!fold) }}>
+                    {foldIcon} {subMenu.name}
                 </div>
-            </div>
-        );
-    };
-    return renderMenu(menus)
+            )
+        }
+        {
+            !subMenu?.children?.length && (<MenuItem menuItem={subMenu} />)
+        }
+        {/* 下一级 */}
+        {
+            !fold && subMenu?.children?.map((menuItem, index) => {
+                if (menuItem.children) {
+                    return (<SubMenu key={`${menuItem.name}_${index}`} subMenu={menuItem} customClass={subMenuClass} />);
+                } else {
+                    return (<MenuItem key={`${menuItem.name}_${index}`} menuItem={menuItem} customClass={subMenuClass} />);
+                }
+            })
+        }
+    </>);
+};
+
+const Menu = ({ menus }) => {
+
+    return (<div className={menuClass}>
+        {
+            menus.map((menuItem, index) => (<SubMenu key={`${menuItem.name}_${index}`} subMenu={menuItem} />))
+        }
+    </div>)
 };
 
 export default Menu;

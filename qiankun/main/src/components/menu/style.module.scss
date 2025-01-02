@@ -1,20 +1,18 @@
 .menu {
     border-radius: var(--small-radius);
     overflow: hidden;
-}
-
-.subMenu {
-    height: var(--row-height);
+    user-select: none;
 }
 
 .menuItem {
     padding: 4px 20px;
-    border-bottom: 1px solid var(--orange-color);
+    border-bottom: 1px solid var(--orange2-color);
     background-color: var(--yellow-color);
     height: var(--medium-height);
+    color: var(--green-color);
 
     a {
-        color: var(--green-color);
+        color: inherit;
         font-size: 16px;
         line-height: 32px;
         text-decoration: none;
@@ -22,6 +20,10 @@
 
     &.active,
     &:hover {
-        background-color: var(--orange-color);
+        background-color: var(--orange2-color);
     }
+}
+
+.subMenu {
+    padding-left: 40px;
 }
