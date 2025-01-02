@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from 'qiankun';
 
-import '@/style/index.scss'
+import '@/assets/style/index.scss'
 
 import App from "./App.jsx";
 import microApps from "./micro-apps";

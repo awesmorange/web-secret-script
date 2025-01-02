@@ -11,5 +11,12 @@
 body,
 html {
     margin: 0;
-    background-color: var(--yellow3-color);
+    background-color: var(--yellow4-color);
+}
+
+.markdown-body {
+    background-color: var(--green4-color) !important;
+    padding: 20px;
+    height: 100%;
+    overflow: auto;
 }
