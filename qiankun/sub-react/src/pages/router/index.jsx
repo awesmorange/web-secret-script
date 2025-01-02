@@ -1,9 +1,12 @@
-import { getShareMainComponent } from '@/utils/share-main.js';
-import reactRouterDoc from '@/doc/router/react-router.md?raw'
+import { getShareMainComponent, getMarkdownDoc } from '@/utils/share-main.js';
+
 const routerPage = () => {
     const {
         MarkdownContainer
-      } = getShareMainComponent();
+    } = getShareMainComponent();
+
+    const { reactRouterDoc } = getMarkdownDoc();
+
     return <MarkdownContainer>
         {reactRouterDoc}
     </MarkdownContainer>

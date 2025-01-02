@@ -1,5 +1,7 @@
 import MarkdownContainer from '@/components/markdownContainer'
 
+import { reactDoc } from '@/doc'
+
 const shareReactComponent = {
   MarkdownContainer
 }
@@ -30,7 +32,8 @@ const microApps = [
     container: '#subapp-viewport', // 子应用挂载的div
     props: {
       routerBase: '/sub-react',
-      shareReactComponent
+      shareReactComponent,
+      reactDoc,
     }
   }
 ]

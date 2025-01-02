@@ -4,7 +4,7 @@ import App from "./App.jsx";
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 
-import { setShareMainComponent } from "@/utils/share-main.js";
+import { setShareMainComponent, setMarkdownDoc } from "@/utils/share-main.js";
 
 let instance = null;
 
@@ -23,10 +23,11 @@ function renderReact() {
 }
 renderWithQiankun({
     mount(props) {
-        const { onGlobalStateChange, setGlobalState, shareReactComponent, enums, name } = props;
-        console.log('>>> sub-react mount', shareReactComponent);
+        const { onGlobalStateChange, setGlobalState, shareReactComponent, reactDoc, enums, name } = props;
+        console.log('>>> sub-react mount', reactDoc);
 
         setShareMainComponent(shareReactComponent);
+        setMarkdownDoc(reactDoc);
         renderReact(props);
     },
     bootstrap() {

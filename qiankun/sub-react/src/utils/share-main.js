@@ -13,3 +13,18 @@ export const setShareMainComponent = (currShareMainApp) => {
         }
     }
 }
+
+// markdown 文档
+let markdownDoc = {}
+
+export const getMarkdownDoc = () => {
+    return markdownDoc;
+}
+
+export const setMarkdownDoc = (currMarkdownDoc) => {
+    for (const key in currMarkdownDoc) {
+        if (Object.prototype.hasOwnProperty.call(currMarkdownDoc, key)) {
+            markdownDoc[key] = currMarkdownDoc[key];
+        }
+    }
+}
