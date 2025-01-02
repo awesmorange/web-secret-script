@@ -1,6 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from 'qiankun';
+
+import '@/style/index.scss'
+
 import App from "./App.jsx";
 import microApps from "./micro-apps";
 
@@ -46,7 +49,7 @@ setGlobalState({
 /**
  * Step3 设置默认进入的子应用
  */
-setDefaultMountApp('/sub-vue2');
+// setDefaultMountApp('/sub-vue2');
 
 /**
  * Step4 启动应用
