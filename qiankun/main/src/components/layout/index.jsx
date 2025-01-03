@@ -1,6 +1,6 @@
 import Menu from "@/components/menu";
 
-import { mainLayout, header } from "./style.module.scss";
+import { mainLayout, header, menuBar, pageBody } from "./style.module.scss";
 
 const Layout = ({ children, menus }) => {
     return (
@@ -9,10 +9,10 @@ const Layout = ({ children, menus }) => {
                 <div>前端进阶秘籍</div>
             </div>
             <div style={{ width: "100%", height: "calc(100vh - 50px)" }}>
-                <div style={{ display: 'inline-block', verticalAlign: 'top', width: "200px" }}>
+                <div className={menuBar}>
                     <Menu menus={menus} />
                 </div>
-                <div style={{ display: 'inline-block', verticalAlign: 'top', width: "calc(100% - 200px)" }}>
+                <div className={pageBody}>
                     {children}
                 </div>
             </div>

@@ -2,7 +2,7 @@ import { BrowserRouter, Link, NavLink, Routes, Route, useNavigate, useSearchPara
 import RoutesCom from "@/routes";
 import Layout from "@/components/layout";
 
-import menus from "@/routes/config.js";
+import menus from "@/routes/menu-config/index.js";
 
 function App() {
     return (<BrowserRouter>

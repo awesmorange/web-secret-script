@@ -1,4 +1,6 @@
-​# 23个Promise高级用法(https://mp.weixin.qq.com/s/A3Lelnef7dNY5Z0KhLRObA)
+# 23个Promise高级用法
+
+[参考链接](https://mp.weixin.qq.com/s/A3Lelnef7dNY5Z0KhLRObA)
 
 ## 并发控制
 
