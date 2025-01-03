@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       ],
     },
     server: {
-      open: true, //自动打开浏览器
+      open: false, //自动打开浏览器
       host: true, // 暴露内网ip
       port: 5202,
       // cors: true,

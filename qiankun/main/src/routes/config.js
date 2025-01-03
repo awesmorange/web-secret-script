@@ -5,11 +5,6 @@ const menus = [
         icon: 'el-icon-s-home',
     },
     {
-        name: '路由',
-        path: '/sub-react/router',
-        icon: 'el-icon-s-home',
-    },
-    {
         name: 'qiankun',
         path: '/qiankun',
         icon: 'el-icon-s-home',
@@ -60,9 +55,16 @@ const menus = [
         icon: 'el-icon-s-home',
     },
     {
-        name: 'sub-react',
+        name: 'react',
         path: '/sub-react',
         icon: 'el-icon-s-home',
+        children: [
+            {
+                name:'router',
+                path: '/sub-react/router',
+                icon: 'el-icon-s-home',
+            },
+        ]
     },
 ]
 

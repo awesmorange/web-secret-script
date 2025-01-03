@@ -1,16 +1,6 @@
 // vue 的路由传参有四种方法，这里 react 有两种方式进行传参
 import React from "react";
-import {
-    BrowserRouter,
-    Link,
-    NavLink,
-    Routes,
-    Route,
-    useNavigate,
-    useSearchParams,
-    useParams,
-    Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Link, NavLink, Routes, Route, useNavigate, useSearchParams, useParams, Outlet } from "react-router-dom";
 import RouterPage from "./pages/router";
 
 const Home = () => {
@@ -37,14 +27,10 @@ const App = () => {
     return (
         <div className="app">
             <BrowserRouter>
-                <Link to="/sub-react">首页 | </Link>
-                <Link to="/sub-react/router">路由 | </Link>
-                <Link to="/sub-react/promise">promise | </Link>
-
                 <Routes>
                     <Route path="/sub-react" element={<Layout />}>
                         <Route index element={<Home />}></Route>
-                        <Route path="router" element={<Layout />}>
+                        <Route path="router">
                             <Route index element={<RouterPage />}></Route>
                         </Route>
                     </Route>

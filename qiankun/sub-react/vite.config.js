@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => {
             ],
         },
         server: {
-            open: true,
+            open: false,
             host: true, // 暴露内网ip
             port: 5203,
             cors: true,
