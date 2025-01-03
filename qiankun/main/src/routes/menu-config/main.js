@@ -42,6 +42,33 @@ const main = [
         ]
     },
     {
+        name: 'algorithm',
+        path: '/algorithm',
+        icon: 'el-icon-s-home',
+        children: [
+            {
+                name: '广度优先(breadth-first)',
+                path: '/algorithm/breadth-first',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '深度优先(depth-first)',
+                path: '/algorithm/depth-first',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '平面转树形(flat2Tree)',
+                path: '/algorithm/flat2Tree',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '树形转平面(tree2Flat)',
+                path: '/algorithm/tree2Flat',
+                icon: 'el-icon-s-home',
+            },
+        ]
+    },
+    {
         name: 'npm-lock',
         path: '/npm-lock',
         icon: 'el-icon-s-home',

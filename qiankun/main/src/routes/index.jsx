@@ -6,6 +6,7 @@ import ChromePage from "@/pages/chrome";
 import BabelPage from "@/pages/babel";
 import H5Page from "@/pages/h5";
 import JsPage from "@/pages/js";
+import AlgorithmPage from "@/pages/algorithm";
 import NpmLockPage from "@/pages/npm-lock";
 import PluginPage from "@/pages/plugin";
 
@@ -19,6 +20,9 @@ const RoutesCom = () => {
             <Route path="/h5" element={<H5Page />} />
             <Route path="/js" >
                 <Route path=":type" element={<JsPage />} />
+            </Route>
+            <Route path="/algorithm" >
+                <Route path=":type" element={<AlgorithmPage />} />
             </Route>
             <Route path="/npm-lock" element={<NpmLockPage />} />
             <Route path="/plugin" element={<PluginPage />} />
