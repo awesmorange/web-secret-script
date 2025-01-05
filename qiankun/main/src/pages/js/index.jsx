@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom'
 import MarkdownContainer from '@/components/markdownContainer'
+import jsDoc from '@/doc/js/js.md?raw'
 import amdDoc from '@/doc/js/AMD.md?raw'
-import interviewDoc from '@/doc/js/interview.md?raw'
+import noteDoc from '@/doc/js/note.md?raw'
 import promiseDoc from '@/doc/js/promise.md?raw'
 
 const DOC_LIST = [
+    { key: 'index', doc: jsDoc },
     { key: 'amd', doc: amdDoc },
-    { key: 'interview', doc: interviewDoc },
-    { key: 'promise', doc: promiseDoc }
+    { key: 'note', doc: noteDoc },
+    { key: 'promise', doc: promiseDoc },
 ]
 
 const jsPage = () => {

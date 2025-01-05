@@ -20,6 +20,9 @@
         [import-html-entry]: error occurs while executing normal script <script type="module">
 
         SyntaxError: Cannot use import statement outside a module
+
+[-] 子应用初次加载是白板，需要刷新后才挂载成功
+
 ## [-] 低代码平台
 ## [-] nodejs 后台
 
@@ -27,7 +30,7 @@
 -  [&cross;] ci/cd
 
         认识workflow，选择workflow模板，学习workflow的触发事件和控制运行条件
--  [O] babel
+-  [&check;] babel
 -  [O] 音视频
 -  [-] webxr
 
