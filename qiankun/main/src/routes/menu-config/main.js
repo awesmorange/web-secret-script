@@ -13,6 +13,48 @@ const main = [
         name: 'babel',
         path: '/babel',
         icon: 'el-icon-s-home',
+        children: [
+            {
+                name: 'babel',
+                path: '/babel/babel',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '基本概念',
+                path: '/babel/concepts',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '核心组件',
+                path: '/babel/core-components',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '配置文件',
+                path: '/babel/configuration',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '常用预设和插件',
+                path: '/babel/presets-and-plugins',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: 'Babel 与构建工具的集成',
+                path: '/babel/build-tools',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: 'Polyfill 的使用',
+                path: '/babel/polyfill',
+                icon: 'el-icon-s-home',
+            },
+            {
+                name: '应用',
+                path: '/babel/practice',
+                icon: 'el-icon-s-home',
+            }
+        ]
     },
     {
         name: 'h5',

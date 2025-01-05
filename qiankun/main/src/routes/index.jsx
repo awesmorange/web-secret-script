@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, NavLink, Routes, Route, useNavigate, useSearchParams, useParams, Outlet, } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import HomePage from "../pages/Home";
 import QiankunPage from "@/pages/qiankun";
@@ -11,23 +11,21 @@ import NpmLockPage from "@/pages/npm-lock";
 import PluginPage from "@/pages/plugin";
 
 const RoutesCom = () => {
-    return (<>
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/qiankun" element={<QiankunPage />} />
-            <Route path="/chrome" element={<ChromePage />} />
-            <Route path="/babel" element={<BabelPage />} />
-            <Route path="/h5" element={<H5Page />} />
-            <Route path="/js" >
-                <Route path=":type" element={<JsPage />} />
-            </Route>
-            <Route path="/algorithm" >
-                <Route path=":type" element={<AlgorithmPage />} />
-            </Route>
-            <Route path="/npm-lock" element={<NpmLockPage />} />
-            <Route path="/plugin" element={<PluginPage />} />
-        </Routes>
-    </>)
-}
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/qiankun" element={<QiankunPage />} />
+                <Route path="/chrome" element={<ChromePage />} />
+                <Route path="/babel/:type" element={<BabelPage />} />
+                <Route path="/h5" element={<H5Page />} />
+                <Route path="/js/:type" element={<JsPage />} />
+                <Route path="/algorithm/:type" element={<AlgorithmPage />} />
+                <Route path="/npm-lock" element={<NpmLockPage />} />
+                <Route path="/plugin" element={<PluginPage />} />
+            </Routes>
+        </>
+    );
+};
 
 export default RoutesCom;
