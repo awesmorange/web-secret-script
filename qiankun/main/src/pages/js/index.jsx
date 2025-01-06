@@ -1,16 +1,33 @@
 import { useState, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import MarkdownContainer from '@/components/markdownContainer'
+
 import jsDoc from '@/doc/js/js.md?raw'
+// function
 import arrowFunctionDoc from '@/doc/js/function/arrow-function.md?raw'
 import functionDoc from '@/doc/js/function/function.md?raw'
+import insideDoc from '@/doc/js/function/inside.md?raw'
+import recursionDoc from '@/doc/js/function/recursion.md?raw'
+import tailCallDoc from '@/doc/js/function/tail-call.md?raw'
+import closureDoc from '@/doc/js/function/closure.md?raw'
+import privateVarDoc from '@/doc/js/function/private-variable.md?raw'
+// note
 import amdDoc from '@/doc/js/note/AMD.md?raw'
 import noteDoc from '@/doc/js/note/note.md?raw'
 import promiseDoc from '@/doc/js/note/promise.md?raw'
 
 const DOC_LIST = [
     { key: 'index', doc: jsDoc },
-    { key: 'function', docTab: [{ name: '箭头函数', doc: arrowFunctionDoc }, { name: '函数', doc: functionDoc }] },
+    { key: 'function', docTab: [
+        { name: '箭头函数', doc: arrowFunctionDoc }, 
+        { name: '函数', doc: functionDoc },
+        { name: '函数内部', doc: insideDoc },
+        { name: '递归', doc: recursionDoc },
+        { name: '尾调用优化', doc: tailCallDoc },
+        { name: '闭包', doc: closureDoc },
+        { name: '私有变量', doc: privateVarDoc },
+
+    ] },
     { key: 'amd', doc: amdDoc },
     { key: 'note', doc: noteDoc },
     { key: 'promise', doc: promiseDoc },

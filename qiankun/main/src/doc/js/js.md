@@ -30,7 +30,7 @@
 - [&check;] 箭头函数
 - [&check;] 没有重载
 - [&check;] 参数扩展与收集
-- 函数内部（arguments、this、caller、new.target）
+- [&check;]函数内部（arguments、this、caller、new.target）
 - 递归
 - 尾调用优化
 - 闭包

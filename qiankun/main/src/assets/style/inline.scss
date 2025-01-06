@@ -1,7 +1,9 @@
 .inline-box {
     display: block;
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 10px 10px 0 10px;
+    overflow: auto;
+    text-wrap: nowrap;
 
     .inline-item {
         display: inline-block;
