@@ -62,13 +62,8 @@ const main = [
                 icon: 'el-icon-s-home',
             },
             {
-                name: 'AMD',
-                path: '/js/amd',
-                icon: 'el-icon-s-home',
-            },
-            {
-                name: 'promise',
-                path: '/js/promise',
+                name: '函数',
+                path: '/js/function',
                 icon: 'el-icon-s-home',
             },
             {
@@ -89,6 +84,16 @@ const main = [
                     {
                         name: 'h5',
                         path: '/h5',
+                        icon: 'el-icon-s-home',
+                    },
+                    {
+                        name: 'AMD',
+                        path: '/js/amd',
+                        icon: 'el-icon-s-home',
+                    },
+                    {
+                        name: 'promise',
+                        path: '/js/promise',
                         icon: 'el-icon-s-home',
                     },
                 ]

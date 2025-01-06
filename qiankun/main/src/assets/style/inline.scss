@@ -1,0 +1,26 @@
+.inline-box {
+    display: block;
+    width: 100%;
+    padding: 10px 0 0 0;
+
+    .inline-item {
+        display: inline-block;
+        min-width: 100px;
+        height: var(--medium-height);
+        border-radius: 12px 12px 0 0;
+        padding: 0px 12px;
+        font-size: 14px;
+        line-height: var(--medium-height);
+        background-color: var(--yellow-color);
+        color: var(--green-color);
+    }
+
+    .inline-item+.inline-item {
+        margin-left: 10px;
+    }
+
+    .active {
+        background-color: var(--green-color);
+        color: var(--white-color);
+    }
+}
