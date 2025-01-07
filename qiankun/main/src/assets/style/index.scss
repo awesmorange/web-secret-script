@@ -1,9 +1,9 @@
-@import 'github-markdown-css';
-@import 'highlight.js/styles/github.css';
+@use 'github-markdown-css';
+@use 'highlight.js/styles/github.css';
 
-@import './color.scss';
-@import './border.scss';
-@import './inline.scss';
+@use './color.scss';
+@use './border.scss';
+@use './inline.scss';
 
 :root {
     --small-height: 24px;

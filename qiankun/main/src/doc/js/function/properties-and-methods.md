@@ -1,8 +1,8 @@
 # 函数属性和方法
 ECMAScript中的函数是对象，因此有属性和方法。
-- 每个函数都有两个属性：length和prototype。
-- 每个函数都有两个方法：apply和call。
-- ECMAScript 5出于同样的目的（相对于apply和call）定义了一个新方法：bind()。
+- 每个函数都有两个属性：**length**和**prototype**。
+- 每个函数都有两个方法：**apply**和**call**。
+- ECMAScript 5出于同样的目的（相对于apply和call）定义了一个新方法：**bind()**。
 
 ## 属性
 ### length

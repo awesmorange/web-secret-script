@@ -1,5 +1,5 @@
 # 函数名
-函数名就是<b>指向函数的指针</b>，所以它们跟其他包含对象指针的变量具有相同的行为。这意味着一个函数可以有多个名称。
+函数名就是**指向函数的指针**，所以它们跟其他包含对象指针的变量具有相同的行为。这意味着一个函数可以有多个名称。
 
 ``` javascript
 funtion sum(num1, num2) {
@@ -15,13 +15,13 @@ ECMAScript 6的所有函数对象都会暴露一个只读的name属性，其中�
 
 ECMAScript 6的所有函数对象都会暴露一个只读的name属性，其中包含关于函数的信息会标识成"anonymous"(匿名函数)
 
-# 理解函数
+# 理解参数
 ECMAScript函数的参数在内部表现为一个数组。在使用function关键字定义（非箭头）函数时，可以在函数内部访问arguments对象，从中取得传进来的每个参数值。
 
 ## arguments对象
-<b>arguments对象是一个类数组对象（但不是Array的实例）</b>​，因此可以使用中括号语法访问其中的元素（第一个参数是arguments[0]​，第二个参数是arguments[1]​）​。而要确定传进来多少个参数，可以访问arguments.length属性。
+**arguments对象是一个类数组对象**（但不是Array的实例）​，因此可以使用中括号语法访问其中的元素（第一个参数是arguments[0]​，第二个参数是arguments[1]​）​。而要确定传进来多少个参数，可以访问arguments.length属性。
 
-- <b>ECMAScript函数的参数只是为了方便才写出来的，并不是必须写出来的。</b>
+- ECMAScript函数的**参数只是为了方便才写出来的，并不是必须写出来的**。
 - arguments对象可以与命名参数一起使用
 ``` javascript
 function doAdd(num1, num2) {
@@ -32,7 +32,7 @@ function doAdd(num1, num2) {
   }
 }
 ```
-- <b>arguments对象的值始终会与对应的命名参数同步</b>。如果只传了一个参数，然后把arguments[1]设置为某个值，那么这个值并不会反映到第二个命名参数。这是因为arguments对象的长度是根据传入的参数个数，而非定义函数时给出的命名参数个数来确定的。
+- **arguments对象的值始终会与对应的命名参数同步**。如果只传了一个参数，然后把arguments[1]设置为某个值，那么这个值并不会反映到第二个命名参数。这是因为arguments对象的长度是根据传入的参数个数，而非定义函数时给出的命名参数个数来确定的。
 ``` javascript
 function doAdd(num1, num2 = 2) {
     arguments[1] = 10 // 第二个参数的值重写为10。因为arguments对象的值会自动同步到对应的命名参数，所以修改arguments[1]也会修改num2的值，因此两者的值都是10。但这并不意味着它们都访问同一个内存地址，它们在内存中还是分开的，只不过会保持同步而已
@@ -43,17 +43,17 @@ cosnole.log(doAdd(10)) // 12
 console.log(doAdd(10, 20)) // 30
 ```
 
-## 没有重载
+# 没有重载
 ECMAScript函数不能像传统编程那样重载。在其他语言比如Java中，一个函数可以有两个定义，只要签名（接收参数的类型和数量）不同就行。如前所述，ECMAScript函数没有签名，因为参数是由包含零个或多个值的数组表示的。没有函数签名，自然也就没有重载。
 
-- 在ECMAScript中定义了两个同名函数，则后定义的会覆盖先定义的。
-- 可以通过检查参数的类型和数量，然后分别执行不同的逻辑来模拟函数重载。
+- 在ECMAScript中定义了两个同名函数，则**后定义的会覆盖先定义**的。
+- 可以通过**检查参数的类型和数量**，然后分别执行不同的逻辑来**模拟函数重载**。
 
-把函数名当成指针也有助于理解为什么ECMAScript没有函数重载。
+**把函数名当成指针也有助于理解为什么ECMAScript没有函数重载**。
 
-## 默认参数值
-### 在ECMAScript5.1及以前
-实现默认参数的一种常用方式就是检测某个参数是否等于undefined，如果是则意味着没有传这个参数，那就给它赋一个值
+# 默认参数值
+## 在ECMAScript5.1及以前
+实现**默认参数**的一种常用方式就是**检测某个参数是否等于undefined**，如果是则意味着没有传这个参数，那就给它赋一个值
 
 ``` javascript
 function makeKing(name) {
@@ -64,8 +64,8 @@ conosle.log(makeKing()) // John the king
 conosle.log(makeKing('Tom')) // Tom the king
 ```
 
-### 在ECMAScript6及以后
-ES6支持显式定义默认参数了。下面就是与前面代码等价的ES6写法，只要在函数定义中的参数后面用=就可以为参数赋一个默认值
+## 在ECMAScript6及以后
+**ES6**支持**显式定义默认参数**了。下面就是与前面代码等价的ES6写法，只要在函数定义中的参数后面用=就可以为参数赋一个默认值
 ``` javascript
 function makeKing(name = 'John') {
     return name + ' the king'
@@ -76,9 +76,9 @@ console.log(makeKing(undefined)) // John the king
 // 给参数传undefined相当于没有传值，不过这样可以利用多个独立的默认值
 ```
 
-### 小结
-1. 在使用默认参数时，arguments对象的值不反映参数的默认值，只反映传给函数的参数。
-当然，跟ES5严格模式一样，修改命名参数也不会影响arguments对象，它始终以调用函数时传入的值为准
+## 小结
+1. 在使用默认参数时，**arguments对象的值不反映参数的默认值，只反映传给函数的参数**。
+当然，跟ES5严格模式一样，**修改命名参数**也**不会影响arguments对象**，它始终**以调用函数时传入的值为准**
 
 ``` javascript
 function makeKing(name = 'John') {
@@ -105,7 +105,7 @@ console.log(makeKing('Louis', 'XVI'));   // 'King Louis XVI'
 console.log(makeKing());                    // 'King Henry II'
 console.log(makeKing());                    // 'King Henry III'
 ```
-3. 函数的默认参数只有在函数被调用时才会求值，不会在函数定义时求值。而且，计算默认值的函数只有在调用函数但未传相应参数时才会被调用。
+3. 函数的**默认参数**只有**在函数被调用时才会求值**，不会在函数定义时求值。而且，**计算默认值的函数只有在调用函数但未传相应参数时才会被调用**。
 
 ## 默认参数作用域与暂时性死区
 给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样。给多个参数定义默认值实际上跟使用let关键字顺序声明变量一样。参数是按顺序初始化的，所以后定义默认值的参数可以引用先定义的参数。
@@ -118,7 +118,7 @@ console.log(makeKing());                    // 'King Henry III'
     console.log(makeKing()); // King Henry Henry
 ```
 
-- <b>参数初始化顺序遵循“暂时性死区”规则，即前面定义的参数不能引用后面定义的参数。</b>否则就会报错
+- **参数初始化顺序遵循“暂时性死区”规则，即前面定义的参数不能引用后面定义的参数**。否则就会报错
 
 ``` javascript
     // 调用时不传第一个参数会报错
@@ -137,8 +137,8 @@ console.log(makeKing());                    // 'King Henry III'
     }
 ```
 
-## 参数扩展与收集
-### 扩展参数
+# 参数扩展与收集
+## 扩展参数
 有如下函数定义，它会将所有传入的参数累加起来
 ``` javascript
     let values = [1, 2, 3, 4];
@@ -150,7 +150,7 @@ console.log(makeKing());                    // 'King Henry III'
       return sum;
     }
 ```
-[&check;] 方法1：使用扩展参数
+**[&check;] 方法1：使用扩展参数**
 ``` javascript
     let values = [1, 2, 3, 4];
     function getSum(...numbers) {
@@ -166,7 +166,7 @@ console.log(makeKing());                    // 'King Henry III'
 - 对函数中的arguments对象而言，它并不知道扩展操作符的存在，而是按照调用函数时传入的参数接收每一个值。
 - arguments对象只是消费扩展操作符的一种方式。在普通函数和箭头函数中，也可以将扩展操作符用于命名参数，当然同时也可以使用默认参数。
 
-[&check;] 方法2：使用apply()
+**[&check;] 方法2：使用apply()**
 ``` javascript
     let values = [1, 2, 3, 4];
     function getSum() {
@@ -178,7 +178,7 @@ console.log(makeKing());                    // 'King Henry III'
     }
     console.log(getSum.apply(null, values)); // 10
 ```
-### 收集参数
+## 收集参数
 收集参数的结果会得到一个Array实例
 ``` javascript
 function getSum(...values) {
@@ -224,8 +224,10 @@ console.log(getSum(1,2,3)); // 6
     console.log(getSum(1,2,3));
 ```
 
-## 函数声明与函数表达式
-JavaScript引擎在任何代码执行之前，会先读取函数声明，并在执行上下文中生成函数定义。而函数表达式必须等到代码执行到它那一行，才会在执行上下文中生成函数定义。
+# 函数声明与函数表达式
+定义函数有两种方式：函数声明和函数表达式。
+## 认识函数声明与函数表达式
+JavaScript引擎**在任何代码执行之前，会先读取函数声明，并在执行上下文中生成函数定义**。而**函数表达式**必须等到代码**执行到它那一行，才会在执行上下文中生成函数定义**。
 ``` javascript
     // 没问题
     console.log(sum(10, 10));
@@ -233,8 +235,10 @@ JavaScript引擎在任何代码执行之前，会先读取函数声明，并在�
       return num1 + num2;
     }
 ```
-函数声明会在任何代码执行之前先被读取并添加到执行上下文。这个过程叫作<b>函数声明提升</b>。
+函数声明会在任何代码执行之前先被读取并添加到执行上下文。这个过程叫作**函数声明提升**。
 即使函数定义出现在调用它们的代码之后，引擎也会把函数声明提升到顶部。
+## 函数表达式
+函数表达式看起来就像**一个普通的变量定义和赋值**，即创建一个函数再把它赋值给一个变量functionName。这样创建的函数叫作**匿名函数**（anonymous funtion）​，因为**function关键字后面没有标识符**。​（匿名函数有也时候也被称为**兰姆达函数**）​。未赋值给其他变量的匿名函数的**name属性是空字符串**。
 
 如果把前面代码中的函数声明改为等价的函数表达式，那么执行的时候就会出错。
 ``` javascript
@@ -245,6 +249,35 @@ JavaScript引擎在任何代码执行之前，会先读取函数声明，并在�
     };
 ```
 之所以会出错，是因为这个函数定义包含在一个变量初始化语句中，而不是函数声明中。这并不是因为使用let而导致的，使用var关键字也会碰到同样的问题。
+## 理解函数声明与函数表达式之间的区别，关键是理解提升
+``` javascript
+// 千万别这样做！
+if (condition) {
+  function sayHi() {
+    console.log('Hi! ');
+  }
+} else {
+  function sayHi() {
+    console.log('Yo! ');
+  }
+}
+sayHi();
+```
+上面写法在ECAMScript中不是有效的语法。JavaScript引擎会尝试将其纠正为适当的声明。问题在于浏览器纠正这个问题的方式并不一致。多数浏览器会忽略condition直接返回第二个声明。Firefox会在condition为true时返回第一个声明。这种写法很危险，不要使用。
+正确写法如下：
+``` javascript
+// 正确写法
+let sayHi;
+if (condition) {
+  sayHi = function() {
+    console.log("Hi! ");
+  };
+} else {
+  sayHi = function() {
+    console.log("Yo! ");
+  };
+}
+```
 
-## 函数作为值
+# 函数作为值
 因为函数名在ECMAScript中就是变量，所以函数可以用在任何可以使用变量的地方。这意味着不仅可以把函数作为参数传给另一个函数，而且还可以在一个函数中返回另一个函数。

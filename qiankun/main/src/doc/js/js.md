@@ -30,10 +30,11 @@
 - [&check;] 箭头函数
 - [&check;] 没有重载
 - [&check;] 参数扩展与收集
-- [&check;]函数内部（arguments、this、caller、new.target）
-- 递归
-- 尾调用优化
-- 闭包
+- [&check;] 函数内部（arguments、this、caller、new.target）
+- [&check;] 递归
+- [&check;] 尾调用优化 (?)
+- [O] 闭包
+- 私有变量
 # [-] 期约与异步函数 1
 - Promise
 - 异步函数

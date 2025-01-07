@@ -3,7 +3,7 @@
 
 箭头函数虽然语法简洁，但也有很多场合不适用。
 
-箭头函数<b>不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性。</b>
+箭头函数**不能使用arguments、super和new.target，也不能用作构造函数。此外，箭头函数也没有prototype属性。**
 
 ``` javascript
 // 箭头函数
@@ -17,7 +17,7 @@ const fun3 = (a, b) => a + b
 ```
 
 ## 箭头函数中的参数
-<b>不能使用arguments关键字，只能通过定义的命名参数访问</b>。
+**不能使用arguments关键字，只能通过定义的命名参数访问**。
 但可以在包装函数中把它提供给箭头函数。
 
 ``` javascript

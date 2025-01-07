@@ -1,7 +1,7 @@
 # 函数内部
-- ECMAScript 5中，函数内部存在两个特殊的对象：arguments和this；
-- ECMAScript 5也会给函数对象上添加一个属性：caller。虽然ECMAScript 3中并没有定义，但所有浏览器除了早期版本的Opera都支持这个属性；
-- ECMAScript 6又新增了new.target属性。
+- ECMAScript 5中，函数内部存在两个特殊的对象：**arguments**和**this**；
+- ECMAScript 5也会给函数对象上添加一个属性：**caller**。虽然ECMAScript 3中并没有定义，但所有浏览器除了早期版本的Opera都支持这个属性；
+- ECMAScript 6又新增了**new.target**属性。
 
 ## arguments
 arguments是一个类数组对象，包含调用函数是传入的所有参数。只有用function关键字定义的函数时才有（箭头函数没有）。
