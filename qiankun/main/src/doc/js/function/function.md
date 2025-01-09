@@ -279,5 +279,93 @@ if (condition) {
 }
 ```
 
+# 立即调用的函数表达式
+**立即调用**的**匿名函数**又被称作立即调用的函数表达式（IIFE, ImmediatelyInvoked Function Expression）​。它**类似于函数声明**，但由于**被包含在括号中**，所以会被解释为函数表达式。
+``` javascript
+(function() {
+  // 块级作用域
+})();
+```
+## ES5及以前模拟块级作用域
+使用IIFE可以模拟块级作用域，即**在一个函数表达式内部声明变量，然后立即调用这个函数**。这样位于函数体作用域的变量就像是在块级作用域中一样。ECMAScript 5尚未支持块级作用域，使用IIFE模拟块级作用域是相当普遍的。
+``` javascript
+// IIFE
+(function () {
+  for (var i = 0; i < count; i++) {
+    console.log(i);
+  }
+})();
+
+// 访问的变量是在IIFE内部定义的，在外部访问不到
+console.log(i);   // 抛出错误
+```
+在ECMAScript 5.1及以前，为了**防止变量定义外泄**，IIFE是个非常有效的方式。这样也**不会导致闭包相关的内存问题**，因为不存在对这个匿名函数的引用。为此，只要函数**执行完毕，其作用域链就可以被销毁**。
+
+## ECMAScript 6以后，IIFE就没有那么必要了
+块级作用域中的变量无须IIFE就可以实现同样的隔离。
+``` javascript
+// 内嵌块级作用域
+{
+  let i;
+  for (i = 0; i < count; i++) {
+    console.log(i);
+  }
+}
+console.log(i); // 抛出错误
+// 循环的块级作用域
+for (let i = 0; i < count; i++) {
+  console.log(i);
+}
+console.log(i); // 抛出错误
+```
+
+## IIFE锁定参数值
+### [X]错误示例
+``` javascript
+let divs = document.querySelectorAll('div');
+// 达不到目的！
+for (var i = 0; i < divs.length; ++i) {
+  divs[i].addEventListener('click', function() {
+    console.log(i);
+  });
+}
+```
+这里使用var关键字声明了循环迭代变量i，但**这个变量并不会被限制在for循环的块级作用域内**。因此，渲染到页面上之后，点击每个\<div>都会弹出元素总数。这是因为在**执行单击处理程序时，迭代变量的值是循环结束时的最终值**，即元素的个数。而且，这个变量i存在于循环体外部，随时可以访问。
+### [&check;]IIFE"锁定"索引值
+``` javascript
+// 实现点击第几个<div>就显示相应的索引值
+let divs = document.querySelectorAll('div');
+for (var i = 0; i < divs.length; ++i) {
+  divs[i].addEventListener('click', (function(frozenCounter){
+    return function(){
+      console.log(frozenCounter);
+    };
+  })(i));
+}
+```
+### [&check;]块级作用域"锁定"索引值
+``` javascript
+// 实现点击第几个<div>就显示相应的索引值
+let divs = document.querySelectorAll('div');
+for (let i = 0; i < divs.length; ++i) {
+  divs[i].addEventListener('click', function() {
+    console.log(i);
+  });
+}
+```
+在**ECMAScript 6**中，如果**对for循环使用块级作用域变量关键字**，在这里就是let，那么循环就会**为每个循环创建独立的变量**，从而让每个单击处理程序都能**引用特定的索引**。
+### [X]块级作用域"锁定"索引值失败
+如果把变量声明拿到for循环外部，那就不行了。下面这种写法会碰到跟在循环中使用var i =0同样的问题。
+``` javascript
+let divs = document.querySelectorAll('div');
+// 达不到目的！
+let i;
+for (i = 0; i < divs.length; ++i) {
+  divs[i].addEventListener('click', function() {
+    console.log(i);
+  });
+}
+```
+
 # 函数作为值
-因为函数名在ECMAScript中就是变量，所以函数可以用在任何可以使用变量的地方。这意味着不仅可以把函数作为参数传给另一个函数，而且还可以在一个函数中返回另一个函数。
+因为函数名在ECMAScript中就是变量，所以函数可以用在任何可以使用变量的地方。这意味着不仅可以把函数**作为参数**传给另一个函数，而且还可以**在一个函数中返回**另一个函数。
