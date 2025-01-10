@@ -4,6 +4,8 @@
 @use './color.scss';
 @use './border.scss';
 @use './inline.scss';
+@use './tab.scss';
+@use './scroll.scss';
 
 :root {
     --small-height: 24px;
@@ -21,6 +23,6 @@ html {
 .markdown-body {
     background-color: var(--green4-color) !important;
     padding: 20px;
-    height: 100%;
+    height: calc(100vh - 160px);
     overflow: auto;
 }

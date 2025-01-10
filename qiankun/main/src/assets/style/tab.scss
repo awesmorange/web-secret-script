@@ -1,0 +1,28 @@
+.tab-box {
+    display: block;
+    width: 100%;
+    padding: 0px 0px 10px 0px;
+    overflow: auto;
+    text-wrap: nowrap;
+
+    .tab-item {
+        display: inline-block;
+        min-width: 100px;
+        height: var(--medium-height);
+        border-radius:  0 0 12px 12px;
+        padding: 0px 12px;
+        font-size: 14px;
+        line-height: var(--medium-height);
+        background-color: var(--yellow-color);
+        color: var(--green-color);
+    }
+
+    .tab-item+.tab-item {
+        margin-left: 10px;
+    }
+
+    .active {
+        background-color: var(--green-color);
+        color: var(--white-color);
+    }
+}

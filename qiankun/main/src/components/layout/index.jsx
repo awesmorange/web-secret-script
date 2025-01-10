@@ -8,7 +8,7 @@ const Layout = ({ children, menus }) => {
             <div className={header}>
                 <div>前端进阶秘籍</div>
             </div>
-            <div style={{ width: "100%", height: "calc(100vh - 50px)" }}>
+            <div style={{ width: "100%", height: "calc(100vh - 80px)" }}>
                 <div className={menuBar}>
                     <Menu menus={menus} />
                 </div>

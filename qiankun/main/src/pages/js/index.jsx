@@ -12,6 +12,11 @@ import recursionDoc from '@/doc/js/function/recursion.md?raw'
 import tailCallDoc from '@/doc/js/function/tail-call.md?raw'
 import closureDoc from '@/doc/js/function/closure.md?raw'
 import privateVarDoc from '@/doc/js/function/private-variable.md?raw'
+// object-class
+import objectDoc from '@/doc/js/object-class/object.md?raw'
+import createDoc from '@/doc/js/object-class/create.md?raw'
+import extendDoc from '@/doc/js/object-class/extend.md?raw'
+import classDoc from '@/doc/js/object-class/class.md?raw'
 // note
 import amdDoc from '@/doc/js/note/AMD.md?raw'
 import noteDoc from '@/doc/js/note/note.md?raw'
@@ -32,6 +37,14 @@ const DOC_LIST = [
 
         ]
     },
+    {
+        key: 'object-class', docTab: [
+            { name: '理解对象', doc: objectDoc },
+            { name: '创建对象', doc: createDoc },
+            { name: '继承', doc: extendDoc },
+            { name: '类', doc: classDoc },
+        ]
+    },
     { key: 'amd', doc: amdDoc },
     { key: 'note', doc: noteDoc },
     { key: 'promise', doc: promiseDoc },
@@ -50,16 +63,16 @@ const jsPage = () => {
     }
 
     return (<>
-        {
-            docTab?.length > 1 && (<div className='inline-box'>
-                {
-                    docTab?.map((item, index) => (<div key={index} className={['inline-item', active === index ? 'active' : ''].join(' ')} onClick={() => handleClick(index)}>{item.name}</div>))
-                }
-            </div>)
-        }
         <MarkdownContainer>
             {docTab[active].doc}
         </MarkdownContainer>
+        {
+            docTab?.length > 1 && (<div className='tab-box'>
+                {
+                    docTab?.map((item, index) => (<div key={index} className={['tab-item', active === index ? 'active' : ''].join(' ')} onClick={() => handleClick(index)}>{item.name}</div>))
+                }
+            </div>)
+        }
     </>
     )
 }

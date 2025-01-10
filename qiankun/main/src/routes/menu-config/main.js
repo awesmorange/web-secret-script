@@ -67,6 +67,11 @@ const main = [
                 icon: 'el-icon-s-home',
             },
             {
+                name: '对象、类',
+                path: '/js/object-class',
+                icon: 'el-icon-s-home',
+            },
+            {
                 name: '踩坑记录',
                 path: '/js/note',
                 icon: 'el-icon-s-home',
