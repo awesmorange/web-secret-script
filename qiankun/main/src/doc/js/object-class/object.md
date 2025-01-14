@@ -2,8 +2,10 @@
 - Object.defineProperty()
 - Object.defineProperties()
 - Object.getOwnPropertyDescriptor()
-- Object.assign()
-- Object.is()
+- Object.assign()（ES6新增）
+- Object.is()（ES6新增）
+- ES6新增的语法糖
+- 解构赋值（ES6新增）
 
 创建自定义对象的通常方式是**创建Object的一个新实例**，然后再给它**添加属性和方法**
 ``` javascript
@@ -15,6 +17,7 @@
         console.log(this.name); // 会解析为person.name
     };
 ```
+
 ## 对象字面量
 ``` javascript
 let person = {
@@ -225,6 +228,7 @@ console.log(Object.getOwnPropertyDescriptors(book));
 //    }
 // }
 ```
+
 ## 合并对象 Object.assign()
 JavaScript开发者经常觉得“合并”​（merge）两个对象很有用。更具体地说，就是把源对象所有的本地属性一起复制到目标对象上。有时候这种操作也被称为“混入”​（mixin）​，因为目标对象通过混入源对象的属性得到了增强。
 
@@ -270,6 +274,7 @@ Object.assign(dest, src);
 // 所以实际上并没有把值转移过来
 console.log(dest); // { set a(val) {...} }
 ```
+
 ## 对象标识及相等判定 Object.is()
 ### 在ECMAScript 6之前，有些特殊情况即使是===操作符也无能为力
 ``` javascript
@@ -305,11 +310,12 @@ function recursivelyCheckEqual(x, ...rest) {
             (rest.length < 2 || recursivelyCheckEqual(...rest));
 }
 ```
+
 ## 增强的对象语法
-ECMAScript 6为定义和操作对象新增了很多极其有用的语法糖特性。这些特性都没有改变现有引擎的行为，但极大地提升了处理对象的方便程度。
-本节介绍的所有对象语法同样适用于ECMAScript 6的类。
+ECMAScript 6为定义和操作对象新增了很多极其有用的**语法糖特性**。这些特性都**没有改变现有引擎的行为**，但**极大地提升了处理对象的方便程度**。
+本节介绍的所有对象语法**同样适用于ECMAScript 6的类**。
 ### 属性值简写
-1. 简写属性名只要使用变量名（不用再写冒号）就会自动被解释为同名的属性键。如果没有找到同名变量，则会抛出ReferenceError。
+1. 简写属性名只要**使用变量名（不用再写冒号）就会自动被解释为同名的属性键**。如果没有找到同名变量，则会抛出ReferenceError。
 ``` javascript
 let name = 'Matt';
 let person = {
@@ -340,6 +346,235 @@ console.log(person.name); // Matt
 ```
 
 ### 可计算属性
+#### 在引入可计算属性之前
+如果想**使用变量的值作为属性**，那么必须**先声明对象**，然后使用**中括号语法来添加属性**。换句话说，_不能在对象字面量中直接动态命名属性_。
+``` javascript
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+let person = {};
+person[nameKey] = 'Matt';
+person[ageKey] = 27;
+person[jobKey] = 'Software engineer';
+console.log(person); // { name: 'Matt', age: 27, job: 'Software engineer' }
+```
+#### 有了可计算属性之后
+就可以在**对象字面量中完成动态属性赋值**。中括号包围的对象属性键告诉运行时将其作为JavaScript表达式而不是字符串来求值。
+``` javascript
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+let person = {
+    [nameKey]: 'Matt',
+    [ageKey]: 27,
+    [jobKey]: 'Software engineer'
+};
+console.log(person); // { name: 'Matt', age: 27, job: 'Software engineer' }
+```
+#### 可计算属性本身可以是复杂的表达式
+因为被当作JavaScript表达式求值，所以可计算属性本身可以是复杂的表达式，在实例化时再求值
+``` javascript
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+let uniqueToken = 0;
+function getUniqueKey(key) {
+    return `${key}_${uniqueToken++}`;
+}
+let person = {
+    [getUniqueKey(nameKey)]: 'Matt',
+    [getUniqueKey(ageKey)]: 27,
+    [getUniqueKey(jobKey)]: 'Software engineer'
+};
+console.log(person);   // { name_0: 'Matt', age_1: 27, job_2: 'Software engineer' }
+```
+#### 注意
+**可计算属性表达式**中**抛出任何错误**都会**中断对象创建**。如果计算属性的表达式有副作用，那就要小心了，因为如果表达式抛出错误，那么之前完成的计算是不能回滚的。
+
+### 简写方法名
+在给对象定义方法时，通常都要写一个方法名、冒号，然后再引用一个匿名函数表达式。
+``` javascript
+let person = {
+    sayName: function(name) {
+        console.log(`My name is ${name}`);
+    }
+};
+person.sayName('Matt'); // My name is Matt
+```
+#### 有了简写方法名之后
+新的简写方法的语法遵循同样的模式，但开发者要放弃给函数表达式命名。
+``` javascript
+let person = {
+    sayName(name){
+        console.log(`My name is ${name}`);
+    }
+};
+person.sayName('Matt'); // My name is Matt
+```
+#### 简写方法名对获取函数和设置函数也是适用的
+``` javascript
+let person = {
+    name_: '',
+    get name() {
+        return this.name_;
+    },
+    set name(name) {
+        this.name_ = name;
+    },
+    sayName() {
+        console.log(`My name is ${this.name_}`);
+    }
+};
+person.name = 'Matt';
+person.sayName(); // My name is Matt
+```
+#### 简写方法名与可计算属性键相互兼容
+``` javascript
+const methodKey = 'sayName';
+let person = {
+    [methodKey](name){
+        console.log(`My name is ${name}`);
+    }
+}
+person.sayName('Matt'); // My name is Matt
+```
+#### 注意
+简写方法名对于本章后面介绍的ECMAScript 6的类更有用
 
 ## 对象解构
+ECMAScript 6新增了**对象解构语法**，可以在**一条语句中使用嵌套数据实现一个或多个赋值操作**。简单地说，对象解构就是使用与对象匹配的结构来实现对象属性赋值。
+### 认识解构赋值
+``` javascript
 
+let person = {
+    name: 'Matt',
+    age: 27
+};
+// 1. 不使用对象解构
+// let personName = person.name,
+//     personAge = person.age;
+// 2. 使用对象解构
+let { name: personName, age: personAge, job, address = 'earth' } = person;
+console.log(personName); // Matt
+console.log(personAge);   // 27
+console.log(job);   // undefined
+console.log(address);   // earth
+```
+- 解构赋值不一定与对象的属性匹配。赋值的时候可以忽略某些属性，而如果**引用的属性不存在**，则该变量的值就是**undefined**。
+- 也可以在**解构赋值**的同时**定义默认值**，这适用于前面刚提到的引用的属性不存在于源对象中的情况。
+- 解构在内部使用函数ToObject()（不能在运行时环境中直接访问）把源数据结构转换为对象。这意味着**在对象解构的上下文中**，**原始值会被当成对象**。这也意味着（根据ToObject()的定义）, **null和undefined不能被解构，否则会抛出错误**。
+``` javascript
+let { length } = 'foobar';
+console.log(length);          // 6
+let { constructor: c } = 4;
+console.log(c === Number);   // true
+let { _ } = null;              // TypeError
+let { _ } = undefined;        // TypeError
+```
+- 解构并不要求变量必须在解构表达式中声明。不过，如果是**给事先声明的变量赋值**，则**赋值表达式必须包含在一对括号中**。
+``` javascript
+let personName, personAge;
+let person = {
+    name: 'Matt',
+    age: 27
+};
+({name: personName, age: personAge} = person);
+console.log(personName, personAge); // Matt, 27
+```
+### 嵌套解构
+1. 解构对于**引用嵌套的属性或赋值目标没有限制**。为此，可以通过解构来复制对象属性
+``` javascript
+let person = {
+    name: 'Matt',
+    age: 27,
+    job: {
+        title: 'Software engineer'
+    }
+};
+let personCopy = {};
+({
+    name: personCopy.name,
+    age: personCopy.age,
+    job: personCopy.job
+} = person);
+// 因为一个对象的引用被赋值给personCopy，所以修改
+// person.job对象的属性也会影响personCopy
+person.job.title = 'Hacker'
+console.log(person);
+// { name: 'Matt', age: 27, job: { title: 'Hacker' } }
+console.log(personCopy);
+// { name: 'Matt', age: 27, job: { title: 'Hacker' } }
+```
+2. 解构赋值可以使用**嵌套结构**，以匹配嵌套的属性：
+``` javascript
+let person = {
+    name: 'Matt',
+    age: 27,
+    job: {
+        title: 'Software engineer'
+    }
+};
+// 声明title变量并将person.job.title的值赋给它
+let { job: { title } } = person;
+console.log(title); // Software engineer
+```
+3. 在**外层属性没有定义**的情况下**不能使用嵌套解构**。无论源对象还是目标对象都一样
+``` javascript
+let person = {
+    job: {
+        title: 'Software engineer'
+    }
+};
+let personCopy = {};
+// foo在源对象上是undefined
+({
+    foo: {
+        bar: personCopy.bar
+    }
+} = person);
+// X TypeError: Cannot destructure property 'bar' of 'undefined' or 'null'.
+// job在目标对象上是undefined
+({
+    job: {
+    title: personCopy.job.title
+    }
+} = person);
+// TypeError: Cannot set property 'title' of undefined
+```
+### 部分解构
+需要注意的是，涉及**多个属性的解构赋值**是一个**输出无关的顺序化**操作。如果**一个解构表达式涉及多个赋值**，**开始的赋值成功而后面的赋值出错**，则整个解构赋值**只会完成一部分**
+``` javascript
+let person = {
+    name: 'Matt',
+    age: 27
+};
+let personName, personBar, personAge;
+try {
+    // person.foo是undefined，因此会抛出错误
+    ({name: personName, foo: { bar: personBar }, age: personAge} = person);
+} catch(e) {}
+console.log(personName, personBar, personAge);
+// Matt, undefined, undefined
+```
+### 参数上下文匹配
+在函数参数列表中也可以进行解构赋值。对**参数的解构赋值不会影响arguments对象**，但**可以在函数签名中声明在函数体内使用局部变量**
+``` javascript
+let person = {
+    name: 'Matt',
+    age: 27
+};
+function printPerson(foo, {name, age}, bar) {
+    console.log(arguments);
+    console.log(name, age);
+}
+function printPerson2(foo, {name: personName, age: personAge}, bar) {
+    console.log(arguments);
+    console.log(personName, personAge);
+}
+printPerson('1st', person, '2nd');
+// ['1st', { name: 'Matt', age: 27 }, '2nd']
+// 'Matt', 27
+printPerson2('1st', person, '2nd');
+// ['1st', { name: 'Matt', age: 27 }, '2nd']
+// 'Matt', 27
+```
