@@ -15,6 +15,7 @@ import privateVarDoc from '@/doc/js/function/private-variable.md?raw'
 // object-class
 import objectDoc from '@/doc/js/object-class/object.md?raw'
 import createDoc from '@/doc/js/object-class/create.md?raw'
+import prototypeDoc from '@/doc/js/object-class/prototype.md?raw'
 import extendDoc from '@/doc/js/object-class/extend.md?raw'
 import classDoc from '@/doc/js/object-class/class.md?raw'
 // note
@@ -41,6 +42,7 @@ const DOC_LIST = [
         key: 'object-class', docTab: [
             { name: '理解对象', doc: objectDoc },
             { name: '创建对象', doc: createDoc },
+            { name: '原型', doc: prototypeDoc },
             { name: '继承', doc: extendDoc },
             { name: '类', doc: classDoc },
         ]
