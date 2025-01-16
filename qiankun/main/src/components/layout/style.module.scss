@@ -12,14 +12,17 @@
     font-weight: 600;
 }
 
+.mainBody {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    display: flex;
+    overflow-x: hidden;
+}
+
 .menuBar {
-    display: inline-block;
-    vertical-align: top;
-    width: 300px;
+    flex: 1;
 }
 
 .pageBody {
-    display: inline-block;
-    vertical-align: top;
-    width: calc(100% - 300px);
+    flex: 0 0 auto;
 }

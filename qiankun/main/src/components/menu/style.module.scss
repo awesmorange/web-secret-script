@@ -2,6 +2,7 @@
     border-radius: var(--small-radius);
     overflow: hidden;
     user-select: none;
+    width: 300px;
 }
 
 .menuItem {
@@ -28,4 +29,10 @@
 
 .subMenu {
     padding-left: 40px;
+}
+
+.open {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
 }

@@ -1,6 +1,6 @@
 import Menu from "@/components/menu";
 
-import { mainLayout, header, menuBar, pageBody } from "./style.module.scss";
+import { mainLayout, mainBody, header, menuBar, pageBody } from "./style.module.scss";
 
 const Layout = ({ children, menus }) => {
     return (
@@ -8,7 +8,7 @@ const Layout = ({ children, menus }) => {
             <div className={header}>
                 <div>前端进阶秘籍</div>
             </div>
-            <div style={{ width: "100%", height: "calc(100vh - 80px)" }}>
+            <div className={mainBody}>
                 <div className={menuBar}>
                     <Menu menus={menus} />
                 </div>
