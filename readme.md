@@ -10,3 +10,19 @@ cd web-secret-script
 npm run install:qiankun-npm // npm run install:qiankun-pnpm
 npm run dev:qiankun
 ```
+
+## unicode图标
+
+🌟 常见面试题
+
+🤔❓💭疑问
+
+📢 注意
+
+✍ 标记
+
+💥 容易混淆的问题
+
+⚡🔥 
+
+✅⭕ 已完成/未完成
