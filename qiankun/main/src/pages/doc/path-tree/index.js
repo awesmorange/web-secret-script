@@ -67,7 +67,7 @@ export const DOC_ROUTER = [
         children: BABEL_ROUTER
     },
     {
-        name: 'algorithm',
+        name: '算法',
         path: 'doc/algorithm',
         children: ALGORITHM_ROUTER
     },
@@ -82,7 +82,7 @@ export const DOC_ROUTER = [
         children: NPM_LOCK_ROUTER
     },
     {
-        name: 'plugin',
+        name: '插件',
         path: 'doc/plugin',
         children: PLUGIN_ROUTER
     },
