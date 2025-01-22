@@ -12,6 +12,7 @@ npm run dev:qiankun
 ```
 
 ## unicode图标
+[快速寻找](https://blog.csdn.net/qq_59845463/article/details/131251711)
 
 🌟 常见面试题
 
@@ -26,3 +27,5 @@ npm run dev:qiankun
 ⚡🔥 
 
 ✅⭕ 已完成/未完成
+
+✔️❌ 对错
