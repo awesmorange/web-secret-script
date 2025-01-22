@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import MarkdownContainer from '@/components/markdownContainer'
 
@@ -27,6 +27,10 @@ const docPage = () => {
         }
         return docTab?.[active]?.doc || errMd
     }, [docTab, active])
+
+    useEffect(() => {
+        setActive(0)
+    }, [docTab])
 
     return (<>
         <MarkdownContainer>

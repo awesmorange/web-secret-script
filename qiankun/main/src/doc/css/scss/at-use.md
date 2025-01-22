@@ -1,8 +1,6 @@
-# @规则详解
+# @use 规则详解
 
-## @use
-
-### 1. 加载成员（样式、变量、mixin、function等）
+## 1. 加载成员（样式、变量、mixin、function等）
 ```scss
 // _code.scss
 code {
@@ -34,7 +32,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 }
 ```
 
-#### **带前缀的变量、mixin的使用**
+### **带前缀的变量、mixin的使用**
 ```scss
 // button/style.scss
 @use 'code';
@@ -47,7 +45,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 }
 ```
 
-#### **Namespace：重命名前缀**
+### **Namespace：重命名前缀**
 ```scss
 // tag/style.scss
 @use "foundation/corners" as c;
@@ -58,7 +56,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 }
 ```
 
-#### **不带前缀的变量、mixin的使用**
+### **不带前缀的变量、mixin的使用**
 ```scss
 // tag/style.scss
 @use "foundation/corners" as *;
@@ -69,7 +67,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 }
 ```
 
-#### 私有变量
+### 私有变量
 私有变量：横线或者下划线开头
 ```scss
 // tag/style.scss
@@ -82,7 +80,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 }
 ```
 
-### 2. 配置
+## 2. 配置
 在变量后加上 **!default** 表示默认值，可以重定义值
 ```scss
 // _library.scss
@@ -103,7 +101,7 @@ code {
 );
 ```
 
-#### 使用Mixin
+### 使用Mixin
 ```scss
 // _library.scss
 $-black: #000;
@@ -147,7 +145,7 @@ $-box-shadow: null;
 @include library.styles;
 ```
 
-#### 变量二次赋值
+### 变量二次赋值
 ```scss
 // _library.scss
 $color: red;
@@ -164,7 +162,7 @@ library.$color: blue;
 @debug library.$color;  //=> blue
 ```
 
-### 3. 查找模块
+## 3. 查找模块
 
 
 
