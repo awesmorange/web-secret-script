@@ -29,3 +29,5 @@ npm run dev:qiankun
 ✅⭕ 已完成/未完成
 
 ✔️❌ 对错
+
+[计划进度](https://gitee.com/avesmorange/web-secret-script/blob/main/qiankun/main/src/doc/dev-plan/progress.md)
