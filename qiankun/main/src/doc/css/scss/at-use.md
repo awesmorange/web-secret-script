@@ -81,6 +81,7 @@ $-height: 30px; // 私有变量：横线或者下划线开头
 ```
 
 ## 2. 配置
+### 修改默认值
 在变量后加上 **!default** 表示默认值，可以重定义值
 ```scss
 // _library.scss
@@ -162,15 +163,76 @@ library.$color: blue;
 @debug library.$color;  //=> blue
 ```
 
-## 3. 查找模块
+## 3. 匹配模块
+使用``@use "variables"`` 会自动匹配到 ``variables.scss``, ``variables.sass``,或者 ``variables.css`` 文件。
 
+### 加载路径
+所有Sass实现都允许用户提供加载路径：Sass在定位模块时将查看的文件系统上的路径。例如，如果将``node_modules/susy/sass``作为加载路径传递，则可以使用``@use “susy”``加载``node_module/susy/sass/susy.scss``（尽管pkg:URL是更好的处理方式）。
 
+模块将优先加载项目路径里面的文件。只有当**不存在**与模块URL匹配的**相对文件**时，**才会使用加载路径**。这可以确保您在添加新库时不会意外弄乱相对导入。
 
+**Sass不要求一定要使用相对路径（./），但是支持使用相对路径。**
 
+### 零件文件
+以``_``开头（如``_code.scs``）的Sass文件只作为模块加载，而不是单独编译。Sass工具不会单独编译这些文件，导入零件文件时**可以省略_**。
 
+### index文件
+如果目录中有``_index.scss``或者``_index.sass``文件，在index文件中会自动加载当前目录的路径。
+```scss
+// foundation/_code.scss
+code {
+  padding: .25em;
+  line-height: 0;
+}
+```
+```scss
+// foundation/_lists.scss
+ul, ol {
+  text-align: left;
 
+  & & {
+    padding: {
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+```
+可以对比``@import``和``@use``的区别。
+```scss
+// foundation/_index.scss
+@import 'code', 'lists';
+// @use 'code';
+// @use 'lists';
+```
+```scss
+// style.scss
+@use 'foundation';
+```
 
+## 4. 加载css文件
+除了加载.sass和.scs文件外，sass还可以加载普通的.css文件。
+```scss
+// code.css
+code {
+  padding: .25em;
+  line-height: 0;
+}
+```
+```scss
+// style.scss
+@use 'code';
+```
 
+## 5. 与@import的区别
+``@use``可以替换``@import``，但是用法不同。有以下几点区别：
 
+- ``@use``仅**使变量、函数和混入在当前文件的范围内可用**。它从未将它们添加到全局范围内。这使得很容易找出Sass文件引用的每个名称的来源，这意味着您可以使用较短的名称，而不会有任何冲突的风险。
 
+- ``@use``只加载每个文件一次。这可以确保您不会意外地多次复制依赖项的CSS。
 
+- ``@use``必须出现在**文件的开头**，不能嵌套在样式规则中。
+
+- 每个``@use``规则只能有**一个URL**。
+
+- ``@use``即使使用缩进语法，也需要在其URL周围加引号。

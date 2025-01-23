@@ -1,5 +1,5 @@
 # SCSS
-[官网]（https://sass-lang.com/guide/）
+[官网](https://sass-lang.com/guide/)
 
 ## 1. 变量
 ### 与CSS属性不同，变量可以在css规则块定义之外存在。当变量定义在css规则块内，那么该变量只能在此规则块内使用。
