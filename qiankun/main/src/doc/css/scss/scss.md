@@ -251,18 +251,22 @@ aside[role=complementary] {
 ```
 
 ## @规则介绍
-导入: @use, @forward, @import
+- 导入: @use, @forward, @import
 
-混合：@mixin, @include
+- 混合：@mixin, @include
 
-方法：@function
+- 方法：@function
 
-继承：@extend
+- 继承：@extend
 
-指向根部：@at-root
+- 指向根部：@at-root
 
-调试：@error, @warn, @debug
+- 调试：@error, @warn, @debug
 
-控制：@if, @each, @for, @while
+    @error：用于抛出错误并终止编译。
+    @warn：用于输出警告信息，但不终止编译。
+    @debug：用于输出调试信息，帮助开发者调试代码。
+
+- 控制：@if, @each, @for, @while
 
 详见【At规则】页
