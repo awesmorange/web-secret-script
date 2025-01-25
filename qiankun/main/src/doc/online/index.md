@@ -17,6 +17,9 @@ yum install nginx
 
 4. 写nginx配置文件
 在``/etc/nginx/nginx.conf``文件中添加以下配置
+
+修改user为root
+
 ```bash
 http {
 # 其他配置
