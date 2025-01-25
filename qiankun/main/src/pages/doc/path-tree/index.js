@@ -4,6 +4,7 @@ import { CI_DOC, CI_ROUTER } from './ci'
 import { CSS_DOC, CSS_ROUTER } from './css'
 import { JS_DOC, JS_ROUTER } from './js'
 import { NPM_LOCK_DOC, NPM_LOCK_ROUTER } from './npm-lock'
+import { ONLINE_DOC, ONLINE_ROUTER } from './online'
 import { PLUGIN_DOC, PLUGIN_ROUTER } from './plugin'
 import { QIANKUN_DOC, QIANKUN_ROUTER } from './qiankun'
 
@@ -48,6 +49,11 @@ export const DOC_TREE = [
         subject: 'ci',
         children: CI_DOC
     },
+    {
+        name: 'online',
+        subject: 'online',
+        children: ONLINE_DOC
+    },
 ]
 
 export const DOC_ROUTER = [
@@ -85,6 +91,11 @@ export const DOC_ROUTER = [
         name: '插件',
         path: 'doc/plugin',
         children: PLUGIN_ROUTER
+    },
+    {
+        name: '打包/上线',
+        path: 'doc/online',
+        children: ONLINE_ROUTER
     },
     {
         name: 'ci',
