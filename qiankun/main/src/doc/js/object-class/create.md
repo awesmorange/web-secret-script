@@ -5,7 +5,7 @@
 - Object构造函数
 - 对象字面量
 
-## 概述
+## 1. 概述
 ### ECMAScript 5.1并没有正式支持面向对象的结构
 比如类或继承。但是，巧妙地运用原型式继承可以成功地模拟同样的行为。
 ### ECMAScript 6开始正式支持类和继承
@@ -13,7 +13,7 @@ ES6的类旨在**完全涵盖之前规范设计的基于原型的继承模式**�
 ### 📢注意
 采用**面向对象编程模式**的JavaScript代码还是**应该使用ECMAScript 6的类**。本文主要讲被ES6的类取代的那些底层概念。
 
-## 工厂模式
+## 2. 工厂模式
 **工厂模式**是一种**抽象了创建具体对象的过程**的设计模式。下面的例子展示了一种按照特定接口创建对象的方式。
 ``` javascript
 // 函数createPerson()接收3个参数，根据这几个参数构建了一个包含Person信息的对象
@@ -33,7 +33,7 @@ let person2 = createPerson("Greg", 27, "Doctor");
 ```
 这种工厂模式虽然可以解决**创建多个类似对象**的问题，但**没有解决对象标识问题**（即新创建的对象是什么类型）​。
 
-## 构造函数模式
+## 3. 构造函数模式
 ECMAScript中的**构造函数**是用于**创建特定类型对象**的。像Object和Array这样的原生构造函数，运行时可以直接在执行环境中使用。当然也可以**自定义构造函数**，以**函数的形式为自己的对象类型定义属性和方法**。
 
 前面的例子使用**构造函数模式**可以这样写：
@@ -170,9 +170,192 @@ person2.sayName();   // Greg
 ```
 这样虽然解决了相同逻辑的函数重复定义的问题，但**全局作用域也因此被搞乱**了，**因为那个函数实际上只能在一个对象上调用**。如果这个对象需要多个方法，那么就要在全局作用域中定义多个函数。这会导致**自定义类型引用的代码不能很好地聚集一起**。这个新问题可以**通过原型模式来解决**。
 
-## 原型模式
+## 4. 原型模式
 **每个函数**都会创建**一个prototype属性**，这个属性是**一个对象**，包含应该**由特定引用类型的实例共享的属性和方法**。实际上，**这个对象就是通过调用构造函数创建的对象的原型**。
 
 🌟使用**原型对象**的**好处**是，**在它上面定义的属性和方法可以被对象实例共享**。
 
-**见创建对象续篇**
+**[见原型模式篇](./prototype.md)**
+
+## 5. 对象迭代{Object.values()和Object.entries()}
+ECMAScript 2017新增了两个静态方法，用于**将对象内容转换为序列化**的——更重要的是**可迭代**的——格式。这两个静态方法Object.values()和Object.entries()接收一个对象，返回它们内容的数组。
+- Object.values()返回对象值的数组；
+- Object.entries()返回键/值对的数组。
+
+### 🌟注意
+1. 非字符串属性会被转换为字符串输出。另外，这两个方法执行对象的**浅复制**：
+``` javascript
+const o = {
+    qux: {}
+};
+console.log(Object.values(o)[0] === o.qux);
+// true
+console.log(Object.entries(o)[0][1] === o.qux);
+// true
+```
+2. **符号属性会被忽略**：
+``` javascript
+const sym = Symbol();
+const o = {
+    [sym]: 'foo'
+};
+console.log(Object.values(o)); // []
+console.log(Object.entries((o))); // []
+```
+
+### ①其他原型语法
+在前面的例子中，每次定义一个属性或方法都会把Person.prototype重写一遍。可以使用对象字面量重写原型，减少冗余精简
+``` javascript
+function Person() {}
+// Person.prototype被设置为等于一个通过对象字面量创建的新对象
+// 最终结果是一样的，只有一个问题：这样重写之后，Person.prototype的constructor属性就不指向Person了。
+Person.prototype = {
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName() {
+        console.log(this.name);
+    }
+};
+```
+在创建函数时，也会创建它的prototype对象，同时会自动给这个原型的constructor属性赋值。而上面的写法完全重写了默认的prototype对象，因此其constructor属性也指向了完全不同的新对象（Object构造函数）​，不再指向原来的构造函数。虽然instanceof操作符还能可靠地返回值，但我们不能再依靠constructor属性来识别类型了
+``` javascript
+let friend = new Person();
+// instanceof仍然对Object和Person都返回true
+console.log(friend instanceof Object);        // true
+console.log(friend instanceof Person);        // true
+// 但constructor属性现在等于Object而不是Person了
+console.log(friend.constructor == Person);   // false
+console.log(friend.constructor == Object);   // true
+```
+#### 如果constructor的值很重要，则可以像下面这样在重写原型对象时专门设置一下它的值
+``` javascript
+function Person() {
+}
+// 这次的代码中特意包含了constructor属性，并将它设置为Person，保证了这个属性仍然包含恰当的值
+Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName() {
+    console.log(this.name);
+    }
+};
+```
+📢以这种方式恢复constructor属性会创建一个[​[Enumerable]​]为true的属性。而原生constructor属性默认是不可枚举的。
+
+因此，如果你使用的是兼容ECMAScript的JavaScript引擎，那可能会改为使用Object.defineProperty()方法来定义constructor属性。
+``` javascript
+function Person() {}
+Person.prototype = {
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName() {
+    console.log(this.name);
+    }
+};
+// 恢复constructor属性
+Object.defineProperty(Person.prototype, "constructor", {
+    enumerable: false,
+    value: Person
+});
+```
+#### 问题
+这样重写之后（使用对象字面量写原型），**Person.prototype的constructor属性就不指向Person了**。在创建函数时，也会创建它的prototype对象，同时会自动给这个原型的constructor属性赋值。而上面的写法**完全重写了默认的prototype对象**，因此其**constructor属性也指向了完全不同的新对象（Object构造函数）​，不再指向原来的构造函数**。
+- **instanceof操作符还能可靠地返回值**，
+- 但**不能再依靠constructor属性来识别类型**了
+如下面的例子所示：
+``` javascript
+let friend = new Person();
+console.log(friend instanceof Object);        // true
+console.log(friend instanceof Person);        // true
+console.log(friend.constructor == Person);   // false
+console.log(friend.constructor == Object);   // true
+```
+### ②原型的动态性
+因为从原型上搜索值的过程是动态的，所以即使实例在修改原型之前已经存在，任何时候对原型对象所做的修改也会在实例上反映出来。
+``` javascript
+// 先创建一个Person实例并保存在friend中。然后一条语句在Person.prototype上添加了一个名为sayHi()的方法。
+let friend = new Person();
+Person.prototype.sayHi = function() {
+    console.log("hi");
+};
+// 虽然friend实例是在添加方法之前创建的，但它仍然可以访问这个方法。
+friend.sayHi();    // "hi"，没问题！
+```
+因为实例和原型之间的链接就是简单的指针，而不是保存的副本，所以会在原型上找到sayHi属性并返回这个属性保存的函数。
+#### 修改prototype属性或方法与重写整个原型的区别
+虽然随时能给原型添加属性和方法，并能够立即反映在所有对象实例上，但这跟重写整个原型是两回事。**实例的[​[Prototype]​]指针是在调用构造函数时自动赋值的**，这个指针即使把原型修改为不同的对象也不会变。重写整个原型会切断最初原型与构造函数的联系，但实例引用的仍然是最初的原型。记住，实例只有指向原型的指针，没有指向构造函数的指针。
+``` javascript
+function Person() {}
+let friend = new Person();
+Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName() {
+        console.log(this.name);
+    }
+};
+// Person的新实例是在重写原型对象之前创建的。在调用friend.sayName()的时候，会导致错误。
+friend.sayName();   // 错误
+```
+这是因为firend指向的原型还是最初的原型，而这个原型上并没有sayName属性。
+
+**重写构造函数上的原型之后再创建的实例才会引用新的原型。而在此之前创建的实例仍然会引用最初的原型。**
+
+### 原生对象原型
+原型模式之所以重要，不仅体现在自定义类型上，而且还因为它也是实现所有原生引用类型的模式。所有原生引用类型的构造函数（包括Object、Array、String等）都在原型上定义了实例方法。比如，数组实例的sort()方法就是Array.prototype上定义的，而字符串包装对象的substring()方法也是在String.prototype上定义的。
+``` javascript
+console.log(typeof Array.prototype.sort);         // "function"
+console.log(typeof String.prototype.substring); // "function"
+```
+通过原生对象的原型可以取得所有默认方法的引用，也可以给原生类型的实例定义新的方法。可以像修改自定义对象原型一样修改原生对象原型，因此随时可以添加方法。
+
+#### 下面的代码就给String原始值包装类型的实例添加了一个startsWith()方法
+``` javascript
+// 如果给定字符串的开头出现了调用startsWith()方法的文本，那么该方法会返回true
+String.prototype.startsWith = function (text) {
+    return this.indexOf(text) === 0;
+};
+let msg = "Hello world! ";
+// 因为这个方法是被定义在String.prototype上，所以当前环境下所有的字符串都可以使用这个方法。
+// msg是个字符串，在读取它的属性时，后台会自动创建String的包装实例，从而找到并调用startsWith()方法。
+console.log(msg.startsWith("Hello"));   // true
+```
+
+📢尽管可以这么做，但并不推荐在产品环境中修改原生对象原型。这样做很可能造成误会，而且可能引发命名冲突（比如一个名称在某个浏览器实现中不存在，在另一个实现中却存在）​。另外还有可能意外重写原生的方法。推荐的做法是创建一个自定义的类，继承原生类型。
+
+### 原型的问题
+原型模式也不是没有问题。
+- 首先，它弱化了向构造函数传递初始化参数的能力，会导致所有实例默认都取得相同的属性值。
+- 最主要问题源自它的共享特性。
+
+原型上的所有属性是在实例间共享的，这对函数来说比较合适。另外包含原始值的属性也还好，如前面例子中所示，可以通过在实例上添加同名属性来简单地遮蔽原型上的属性。真正的问题来自**包含引用值的属性**
+``` javascript
+function Person() {}
+// Person.prototype有一个名为friends的属性，它包含一个字符串数组。
+Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    friends: ["Shelby", "Court"],
+    sayName() {
+        console.log(this.name);
+    }
+};
+// 创建了两个Person的实例
+let person1 = new Person();
+let person2 = new Person();
+// person1.friends通过push方法向数组中添加了一个字符串
+person1.friends.push("Van");
+// 由于这个friends属性存在于Person.prototype而非person1上，新加的这个字符串也会在（指向同一个数组的）person2.friends上反映出来。
+console.log(person1.friends);   // "Shelby,Court,Van"
+console.log(person2.friends);   // "Shelby,Court,Van"
+console.log(person1.friends === person2.friends);   // true
+```
+如果这是有意在多个实例间共享数组，那没什么问题。但一般来说，不同的实例应该有属于自己的属性副本。这就是实际开发中通常不单独使用原型模式的原因。

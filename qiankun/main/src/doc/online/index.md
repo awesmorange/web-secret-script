@@ -42,6 +42,8 @@ http {
 
 5. 启动nginx(CentOS)
 ```bash
+# 检查nginx配置是否正确
+sudo nginx -t
 # 启动nginx
 sudo systemctl start nginx.service
 # 停止nginx

@@ -40,7 +40,7 @@ export const JS_DOC = [
         type: 'object-class', name: '对象、类', docTab: [
             { name: '理解对象', doc: objectDoc },
             { name: '创建对象', doc: createDoc },
-            { name: '原型', doc: prototypeDoc },
+            { name: '原型模式', doc: prototypeDoc },
             { name: '继承', doc: extendDoc },
             { name: '类', doc: classDoc },
         ]
