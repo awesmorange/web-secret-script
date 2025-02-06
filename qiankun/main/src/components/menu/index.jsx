@@ -15,13 +15,24 @@ import {
     menu as menuClass,
     subMenu as subMenuClass,
     menuItem as menuItemClass,
-    open as openClass, 
+    open as openClass,
+    active as activeClass,
 } from "./style.module.scss";
 
 const MenuItem = ({ menuItem, customClass }) => {
+    const navigate = useNavigate();
+
+    const isActive = useMemo(() => {
+        //  path 比 window.location.pathname 路径少"/"
+        if (menuItem.path === '/' && window.location.pathname === '/') {
+            return true;
+        }
+        return menuItem.path !== '/' && window.location.pathname.includes(menuItem.path);
+    }, [navigate]);
+
     return (
-        <div className={[menuItemClass, customClass].join(" ")}>
-            <NavLink to={menuItem.path}>{menuItem.name}</NavLink>
+        <div className={[menuItemClass, customClass, isActive ? activeClass : ""].join(" ")}>
+            <NavLink to={menuItem.path}>{isActive ? "📖" : "📘"}{menuItem.name}</NavLink>
         </div>
     );
 };
@@ -31,10 +42,17 @@ const SubMenu = ({ subMenu, customClass }) => {
 
     const foldIcon = useMemo(() => {
         if (subMenu?.children?.length) {
-            return fold ? "+" : "-";
+            return fold ? "📁" : "📂";
         }
         return "";
     }, [subMenu, fold]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // 没有激活子项的菜单目录折叠
+        setFold(!window.location.pathname.includes(subMenu.path))
+    }, [navigate]);
 
     return (
         <>
@@ -76,11 +94,11 @@ const SubMenu = ({ subMenu, customClass }) => {
 };
 
 const Menu = ({ menus }) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     return (
         <>
             <div className={openClass} onClick={() => setOpen(!open)}>
-                { open ? '<<' : '>>'}
+                {open ? '⏪' : '⏩'}
             </div>
             {open && (
                 <div className={menuClass}>
