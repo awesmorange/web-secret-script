@@ -1,13 +1,15 @@
 const subReact = [
     {
-        name: 'react',
+        name: 'react子应用',
         path: '/sub-react',
-        icon: 'el-icon-s-home',
         children: [
             {
                 name: 'router',
                 path: '/sub-react/router',
-                icon: 'el-icon-s-home',
+            },
+            {
+                name: 'hook',
+                path: '/sub-react/hook',
             },
         ]
     },

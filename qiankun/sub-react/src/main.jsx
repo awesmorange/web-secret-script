@@ -1,5 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
 import App from "./App.jsx";
 
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
@@ -17,7 +19,9 @@ function renderReact() {
     instance = createRoot(document.getElementById("react-app"));
     instance.render(
         <StrictMode>
-            <App />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </StrictMode>
     );
 }
@@ -43,4 +47,5 @@ renderWithQiankun({
 // 独立运行时，直接挂载应用
 if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
     renderReact({});
+    console.log('>>> sub-react run alone');
 }

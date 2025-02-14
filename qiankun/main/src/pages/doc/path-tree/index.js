@@ -7,6 +7,7 @@ import { NPM_LOCK_DOC, NPM_LOCK_ROUTER } from './npm-lock'
 import { ONLINE_DOC, ONLINE_ROUTER } from './online'
 import { PLUGIN_DOC, PLUGIN_ROUTER } from './plugin'
 import { QIANKUN_DOC, QIANKUN_ROUTER } from './qiankun'
+import { REACT_DOC, REACT_ROUTER } from './react'
 import { SCENARIOIZATION_DOC, SCENARIOIZATION_ROUTER } from './scenarioization'
 
 export const DOC_TREE = [
@@ -60,6 +61,11 @@ export const DOC_TREE = [
         subject: 'scenarioization',
         children: SCENARIOIZATION_DOC
     },
+    {
+        name: 'react',
+        subject: 'react',
+        children: REACT_DOC
+    },
 ]
 
 export const DOC_ROUTER = [
@@ -112,5 +118,10 @@ export const DOC_ROUTER = [
         name: '场景化笔记',
         path: 'doc/scenarioization',
         children: SCENARIOIZATION_ROUTER
+    },
+    {
+        name: 'react',
+        path: 'doc/react',
+        children: REACT_ROUTER
     },
 ]

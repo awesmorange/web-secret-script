@@ -7,7 +7,6 @@ const menus = [
     {
         name: '首页',
         path: '/',
-        icon: 'el-icon-s-home',
     },
     ...main,
     ...subReact,
